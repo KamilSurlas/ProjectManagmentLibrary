@@ -2,10 +2,14 @@
 //
 
 #include <iostream>
+#include "User.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+
+    User u1;
+    u1.setPhoneNumber("12345678a");
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
