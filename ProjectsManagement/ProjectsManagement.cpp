@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include "User.h"
+#include "FileHandler.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
-
-    User u1;
-    u1.setPhoneNumber("12345678a");
+    std::vector<string> xd;
+    xd.push_back("lol");
+    FileHandler::saveFile(xd);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

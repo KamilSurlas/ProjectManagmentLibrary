@@ -1,6 +1,8 @@
 #pragma once
 class TaskManager
 {
+private:
+
 protected:
 	static TaskManager* m_taskManager;
 protected:
