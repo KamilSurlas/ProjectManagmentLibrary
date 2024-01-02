@@ -1,4 +1,5 @@
 #pragma once
+#include "Task.h"
 class TaskManager
 {
 private:
@@ -17,6 +18,6 @@ public:
 
 	static TaskManager* getInstance();
 
-	//void addUserToTask();
+	void assignUserToTask(Task& targetTask, User& user);
 };
 

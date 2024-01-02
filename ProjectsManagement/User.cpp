@@ -1,11 +1,5 @@
 #include "User.h"
 
-User::User(string name, string surname, string mail, string username, string phoneNumber, Task* task)
-	:User(name, surname, mail, username, phoneNumber)
-{
-	assignTask(task);
-}
-
 User::User(string name, string surname, string mail, string username, string phoneNumber)
 	:User(name, surname, mail, username)
 {
@@ -45,14 +39,6 @@ void User::setPhoneNumber(const string& newPhoneNumber)
 {
 	isValidPhoneNumber(newPhoneNumber) ?
 		m_phoneNumber = newPhoneNumber : throw invalid_argument("Wrong phone number");
-}
-
-void User::assignTask(Task* task)
-{
-	if (task == nullptr)
-		throw std::invalid_argument("Cannot assign task that is null");
-
-	isUserUnassignedFromTask(task) ? m_tasks.push_back(task) : throw std::invalid_argument("User is already participating in task");
 }
 
 
@@ -100,9 +86,5 @@ bool User::isValidPhoneNumber(const string& phoneNumber)
 	return phoneNumber.length() == 9 && phoneNumber.find_first_not_of("0123456789") == string::npos;
 }
 
-bool User::isUserUnassignedFromTask(const Task* task)
-{
-	return std::find(m_tasks.begin(), m_tasks.end(), task) == m_tasks.end();
-}
 
 

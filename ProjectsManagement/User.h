@@ -2,7 +2,6 @@
 #include <string>
 #include <stdexcept>
 #include <regex>
-#include "Task.h"
 
 using std::string;
 using std::invalid_argument;
@@ -19,10 +18,7 @@ private:
 	string m_username;
 	string m_phoneNumber;
 
-	//Tu mozna zrobic tablice wskaznikow zamiast vectora pewnie lepsza wydajnosc xppp
-	vector<Task*> m_tasks;
 public:
-	User(string name, string surname, string mail, string username, string phoneNumber, Task* task);
 	User(string name, string surname, string mail, string username, string phoneNumber);
 	User(string name, string surname, string mail, string username);
 
@@ -32,8 +28,6 @@ public:
 	void setUsername(const string& newUsername);
 	void setPhoneNumber(const string& newPhoneNumber);
 
-	void assignTask(Task* task);
-	void unassignTask(Task* task);
 //Methods
 private:
 	bool isValidName(const string& name);
@@ -41,9 +35,6 @@ private:
 	bool isValidMail(const string& mail);
 	bool isValidUsername(const string& username);
 	bool isValidPhoneNumber(const string& phoneNumber);
-	bool isUserUnassignedFromTask(const Task* task);
-
-
 };
 
 

@@ -9,3 +9,8 @@ TaskManager* TaskManager::getInstance()
 
 	return m_taskManager;
 }
+
+void TaskManager::assignUserToTask(Task& targetTask, User& user)
+{
+	targetTask.m_users.push_back(user);
+}
