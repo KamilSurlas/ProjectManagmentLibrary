@@ -3,6 +3,8 @@
 class TaskManager
 {
 private:
+	std::vector<Task*> m_tasks;
+private:
 	bool isUserAssignedToTask(Task& targetTask, User& user) const;
 	bool isManagerAssignedToTask(Task& targetTask, User& manager) const;
 protected:
@@ -24,5 +26,9 @@ public:
 	void removeUserFromTask(Task& targetTask, User& user);
 	void assignManagerToTask(Task& targetTask, User& manager);
 	void removeManagerFromTask(Task& targetTask, User& manager);
+	// Mozna popisac wiecej creatow
+	Task& createTask(const std::string& name, Date taskStartDate, Date taskFinishDate);
+	void removeTask(Task* targetTask);
+	void removeAllTasks();
 };
 

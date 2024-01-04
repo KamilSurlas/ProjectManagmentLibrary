@@ -34,6 +34,25 @@ void TaskManager::removeManagerFromTask(Task& targetTask, User& manager)
 {
 	remove(targetTask.m_managers.begin(), targetTask.m_users.end(), &manager);
 }
+Task& TaskManager::createTask(const std::string& name, Date taskStartDate, Date taskFinishDate)
+{
+	Task* t = new Task(name, taskStartDate, taskFinishDate);
+	m_tasks.push_back(t);
+	return *t;
+}
+void TaskManager::removeTask(Task* targetTask)
+{
+	remove(m_tasks.begin(), m_tasks.end(), targetTask);
+	delete targetTask;
+}
+void TaskManager::removeAllTasks()
+{
+	for (auto i : m_tasks)
+	{
+		remove(m_tasks.begin(), m_tasks.end(), i);
+		delete i;
+	}
+}
 void TaskManager::assignManagerToTask(Task& targetTask, User& manager)
 {
 	isManagerAssignedToTask(targetTask, manager) ? throw invalid_argument("Manager: " + manager.getName() + " " + manager.getSurname() + " is already assign to task: " + targetTask.m_taskName) : targetTask.m_managers.push_back(&manager);

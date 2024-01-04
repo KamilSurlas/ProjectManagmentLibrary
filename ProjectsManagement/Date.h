@@ -11,7 +11,6 @@ class Date
 
 private:
 	bool isValidDate(unsigned int day, unsigned int month, unsigned int year); 
-
 	bool isValidTime(unsigned int hour, unsigned int minute); 
 public:
 	static Date getCurrentDate();
