@@ -60,8 +60,11 @@ public:
 	void editFinishDate(unsigned int year,unsigned int month,unsigned int day);
 	void editStartTime(unsigned int hour, unsigned int min);
 	void editFinishTime(unsigned int hour, unsigned int min);
-	void editTaskName(Task& targetTask, string name);
-	void editTaskDescription(Task& targetTask, string desc);
+	
 	string getTaskName() { return m_taskName; }
+	string getTaskDescritpion() { return m_taskDescription; }
+	Date getTaskStartDate() { return m_taskStartDate; }
+	Date getTaskFinishDate() { return m_taskFinishDate; }
+	Date getTaskCreationDate() { return m_taskCreationDate; }
 };
 

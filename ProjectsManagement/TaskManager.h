@@ -16,7 +16,8 @@ public:
 	TaskManager(TaskManager &&other) = delete;
 	void operator=(TaskManager& other) = delete;
 	void operator=(TaskManager&& other) = delete;
-
+	void editTaskName(Task& targetTask, string name);
+	void editTaskDescription(Task& targetTask, string desc);
 	static TaskManager* getInstance();
 
 	void assignUserToTask(Task& targetTask, User& user);

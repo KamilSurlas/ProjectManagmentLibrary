@@ -29,6 +29,9 @@ public:
 	void setPhoneNumber(const string& newPhoneNumber);
 	string getName() { return m_name; }
 	string getSurname() { return m_surname; }
+	string getMail() { return m_mail; }
+	string getUsername(){ return m_username; }
+	string getPhoneNumber() { return m_phoneNumber; }
 //Methods
 private:
 	bool isValidName(const string& name);

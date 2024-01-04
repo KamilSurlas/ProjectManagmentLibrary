@@ -45,12 +45,4 @@ Task::Date Task::getCurrentDate()
 
 	return Date(day, mon, year, hours, min);
 }
-void Task::editTaskName(Task& targetTask, string name)
-{
-	!name.empty() ? targetTask.m_taskName = name : throw invalid_argument("Provided task name is empty");
-}
 
-void Task::editTaskDescription(Task& targetTask, string desc)
-{
-	!desc.empty() ? targetTask.m_taskDescription = desc : throw invalid_argument("Provided task description is empty");
-}
