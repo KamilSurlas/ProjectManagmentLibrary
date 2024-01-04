@@ -27,7 +27,8 @@ public:
 	void setMail(const string& newMail);
 	void setUsername(const string& newUsername);
 	void setPhoneNumber(const string& newPhoneNumber);
-
+	string getName() { return m_name; }
+	string getSurname() { return m_surname; }
 //Methods
 private:
 	bool isValidName(const string& name);
