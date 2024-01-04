@@ -6,8 +6,26 @@ Task::Task(const std::string& name,
 	:m_taskStartDate(startDay, startMonth, startYear, startHour, startMin),
 	m_taskFinishDate(endDay, endMonth, endYear, endHour, endMin),
 	m_taskCreationDate(getCurrentDate())
-{
+{}
 
+void Task::editStartTime(unsigned int hour, unsigned int min)
+{
+	m_taskStartDate.editTime(hour, min);
+}
+
+void Task::editFinishTime(unsigned int hour, unsigned int min)
+{
+	m_taskFinishDate.editTime(hour, min);
+}
+
+void Task::editStartDate(unsigned int year, unsigned int month, unsigned int day)
+{
+	m_taskStartDate.editDate(year, month, day);
+}
+
+void Task::editFinishDate(unsigned int year,unsigned int month,unsigned int day)
+{
+	m_taskFinishDate.editDate(year, month, day);
 }
 
 Task::Date Task::getCurrentDate()
@@ -26,4 +44,13 @@ Task::Date Task::getCurrentDate()
 	int year = timeInfo.tm_year + 1900;
 
 	return Date(day, mon, year, hours, min);
+}
+void Task::editTaskName(Task& targetTask, string name)
+{
+	!name.empty() ? targetTask.m_taskName = name : throw invalid_argument("Provided task name is empty");
+}
+
+void Task::editTaskDescription(Task& targetTask, string desc)
+{
+	!desc.empty() ? targetTask.m_taskDescription = desc : throw invalid_argument("Provided task description is empty");
 }

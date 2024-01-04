@@ -34,17 +34,6 @@ void TaskManager::removeManagerFromTask(Task& targetTask, User& manager)
 {
 	remove(targetTask.m_managers.begin(), targetTask.m_users.end(), &manager);
 }
-
-void TaskManager::editTaskName(Task& targetTask, string name)
-{
-	!name.empty() ? targetTask.m_taskName = name : throw invalid_argument("Provided task name is empty");
-}
-
-void TaskManager::editTaskDescription(Task& targetTask, string desc)
-{
-	!desc.empty() ? targetTask.m_taskDescription = desc : throw invalid_argument("Provided task description is empty");
-}
-
 void TaskManager::assignManagerToTask(Task& targetTask, User& manager)
 {
 	isManagerAssignedToTask(targetTask, manager) ? throw invalid_argument("Manager: " + manager.getName() + " " + manager.getSurname() + " is already assign to task: " + targetTask.m_taskName) : targetTask.m_managers.push_back(&manager);

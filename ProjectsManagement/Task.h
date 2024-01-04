@@ -31,6 +31,12 @@ private:
 			m_hour = h;
 			m_min = min;
 		}
+		void editTime(unsigned int hour,unsigned int min) {
+			isValidTime(hour, min) ? m_min = min, m_hour = hour : throw std::invalid_argument("Invalid time values");
+		}
+		void editDate(unsigned int year, unsigned int month, unsigned int day) {
+			isValidDate(day,month,year) ? m_year = year, m_month = month, m_day = day : throw std::invalid_argument("Invalid date values");
+		}
 	};
 
 
@@ -50,9 +56,12 @@ public:
 	Task(const std::string& name,
 		unsigned int startDay, unsigned int startMonth, unsigned int startYear, unsigned int startHour, unsigned int startMin,
 		unsigned int endDay, unsigned int endMonth, unsigned int endYear, unsigned int endHour, unsigned int endMin);
-		
-
-
+	void editStartDate(unsigned int year, unsigned int month,unsigned int day);
+	void editFinishDate(unsigned int year,unsigned int month,unsigned int day);
+	void editStartTime(unsigned int hour, unsigned int min);
+	void editFinishTime(unsigned int hour, unsigned int min);
+	void editTaskName(Task& targetTask, string name);
+	void editTaskDescription(Task& targetTask, string desc);
 	string getTaskName() { return m_taskName; }
 };
 

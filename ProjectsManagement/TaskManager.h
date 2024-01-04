@@ -23,7 +23,5 @@ public:
 	void removeUserFromTask(Task& targetTask, User& user);
 	void assignManagerToTask(Task& targetTask, User& manager);
 	void removeManagerFromTask(Task& targetTask, User& manager);
-	void editTaskName(Task& targetTask, string name);
-	void editTaskDescription(Task& targetTask, string desc);
 };
 
