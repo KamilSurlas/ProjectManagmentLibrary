@@ -49,9 +49,9 @@ void TaskManager::removeAllTasks()
 {
 	for (auto i : m_tasks)
 	{
-		remove(m_tasks.begin(), m_tasks.end(), i);
 		delete i;
 	}
+	m_tasks.clear();
 }
 void TaskManager::assignManagerToTask(Task& targetTask, User& manager)
 {
