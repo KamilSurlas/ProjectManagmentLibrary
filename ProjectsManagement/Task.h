@@ -39,11 +39,20 @@ private:
 	std::vector<User*> m_managers;
 	std::string m_taskName;
 	std::string m_taskDescription;
+	Date m_taskCreationDate;
+	Date m_taskFinishDate;
+	Date m_taskStartDate;
 
+	Date getCurrentDate();
 	friend class TaskManager;
 
 public:
-	Task(string taskName, string taskDescription, Date creationDate, Date taskStartDate, Date taskFinishDate);
+	Task(const std::string& name,
+		unsigned int startDay, unsigned int startMonth, unsigned int startYear, unsigned int startHour, unsigned int startMin,
+		unsigned int endDay, unsigned int endMonth, unsigned int endYear, unsigned int endHour, unsigned int endMin);
+		
+
+
 	string getTaskName() { return m_taskName; }
 };
 

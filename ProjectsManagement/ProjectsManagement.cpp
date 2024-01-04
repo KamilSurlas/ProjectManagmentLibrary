@@ -4,6 +4,7 @@
 #include <iostream>
 #include "User.h"
 #include "FileHandler.h"
+#include "Task.h"
 
 int main()
 {
@@ -11,6 +12,8 @@ int main()
     std::vector<string> xd;
     xd.push_back("lol");
     FileHandler::saveFile(xd);
+    //Task task("XD", "xd", )
+    
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
