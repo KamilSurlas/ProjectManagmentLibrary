@@ -5,7 +5,7 @@ Task::Task(const std::string& name,
 	unsigned int endDay, unsigned int endMonth, unsigned int endYear, unsigned int endHour, unsigned int endMin)
 	:m_taskStartDate(startDay, startMonth, startYear, startHour, startMin),
 	m_taskFinishDate(endDay, endMonth, endYear, endHour, endMin),
-	m_taskCreationDate(getCurrentDate())
+	m_taskCreationDate(Date::getCurrentDate())
 {}
 
 void Task::editStartTime(unsigned int hour, unsigned int min)
@@ -28,21 +28,5 @@ void Task::editFinishDate(unsigned int year,unsigned int month,unsigned int day)
 	m_taskFinishDate.editDate(year, month, day);
 }
 
-Task::Date Task::getCurrentDate()
-{
-	std::time_t currentTime = std::time(nullptr);
 
-	std::tm timeInfo;
-	if (localtime_s(&timeInfo, &currentTime) != 0) {
-		throw std::runtime_error("Error converting time.");
-	}
-
-	int hours = timeInfo.tm_hour;
-	int min = timeInfo.tm_min;
-	int day = timeInfo.tm_mday;
-	int mon = timeInfo.tm_mon + 1;
-	int year = timeInfo.tm_year + 1900;
-
-	return Date(day, mon, year, hours, min);
-}
 
