@@ -1,5 +1,6 @@
 #pragma once
 #include "Task.h"
+#include "FileHandler.h"
 class TaskManager
 {
 private:
@@ -30,5 +31,6 @@ public:
 	Task& createTask(const std::string& name, Date taskStartDate, Date taskFinishDate);
 	void removeTask(Task* targetTask);
 	void removeAllTasks();
+	void createFile(std::string* fileName = FileHandler::createFileName());
 };
 

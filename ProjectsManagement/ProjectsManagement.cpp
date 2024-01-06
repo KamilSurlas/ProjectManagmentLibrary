@@ -5,13 +5,18 @@
 #include "User.h"
 #include "FileHandler.h"
 #include "Task.h"
+#include "TaskManager.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
     std::vector<string> xd;
     xd.push_back("lol");
-    FileHandler::saveFile(xd);
+    TaskManager* t = TaskManager::getInstance();
+    Date dat(1, 1, 1111, 1, 1);
+    t->createTask("d", dat, dat);
+    t->createFile();
+    //FileHandler::saveFile(xd);
     //Task task("XD", "xd", )
     
 }

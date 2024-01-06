@@ -43,6 +43,16 @@ void Date::editDate(unsigned int year, unsigned int month, unsigned int day)
 	isValidDate(day, month, year) ? m_year = year, m_month = month, m_day = day : throw std::invalid_argument("Invalid date values");
 }
 
+std::string Date::getDateAsString() 
+{
+	return std::to_string(m_year) + "-" + addLeadingZero(m_month) + "-" + addLeadingZero(m_day);
+}
+
+std::string Date::getDateTimeAsString()
+{
+	return this->getDateAsString() + " " + addLeadingZero(m_hour) + ":" + addLeadingZero(m_min);
+}
+
 bool Date::isValidDate(unsigned int day, unsigned int month, unsigned int year)
 {
 	return (day >= 1 && day <= 31) && (month >= 1 && month <= 12) && (year >= 1000 && year <= 9999);
@@ -51,6 +61,11 @@ bool Date::isValidDate(unsigned int day, unsigned int month, unsigned int year)
 bool Date::isValidTime(unsigned int hour, unsigned int minute)
 {
 	return hour < 24 && minute < 60;
+}
+
+std::string Date::addLeadingZero(unsigned int value)
+{
+	return (value < 10) ? "0" + std::to_string(value) : std::to_string(value);
 }
 
 

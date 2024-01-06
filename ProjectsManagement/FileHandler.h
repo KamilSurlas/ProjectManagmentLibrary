@@ -4,12 +4,13 @@
 #include <nlohmann/json.hpp>
 #include <chrono>
 #include <time.h>
+#include "Task.h"
 
+using json = nlohmann::json;
 class FileHandler
 {
-private:
-	static std::string* createFileName();
 public:
-	static void saveFile(const std::vector<std::string>& data);
+	static std::string* createFileName();
+	static void saveFile(const std::vector<Task*>& data, std::string* fileName = createFileName());
 };
 

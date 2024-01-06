@@ -21,12 +21,22 @@ std::string* FileHandler::createFileName()
 	return fileName;
 }
 
-void FileHandler::saveFile(const std::vector<std::string>& data)
+void FileHandler::saveFile(const std::vector<Task*>& data, std::string* fileName)
 {
 	//Zrobione na wskazniku, zeby przy ewentualnej awarii jak najszybciej sie zapisalo
-	std::string* fileName = createFileName();
-	
-
+	if (data.size() > 0) {
+		json j;
+		for (auto i : data) {
+			j["TaskName"] = i->getTaskName();
+			j["TaskDescription"] = i->getTaskDescritpion();
+			j["CreationDate"] = i->getTaskCreationDate().getDateTimeAsString();
+			//j[""]
+		}
+		
+		std::ofstream file(*fileName + ".json");
+		file << j;
+	}
+		
 
 	delete fileName;
 }

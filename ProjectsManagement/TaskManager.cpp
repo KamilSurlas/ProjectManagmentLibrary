@@ -53,6 +53,10 @@ void TaskManager::removeAllTasks()
 	}
 	m_tasks.clear();
 }
+void TaskManager::createFile(std::string* fileName)
+{
+	FileHandler::saveFile(m_tasks, fileName);
+}
 void TaskManager::assignManagerToTask(Task& targetTask, User& manager)
 {
 	isManagerAssignedToTask(targetTask, manager) ? throw invalid_argument("Manager: " + manager.getName() + " " + manager.getSurname() + " is already assign to task: " + targetTask.m_taskName) : targetTask.m_managers.push_back(&manager);
