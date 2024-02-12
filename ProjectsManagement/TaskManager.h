@@ -1,13 +1,13 @@
 #pragma once
 #include "Task.h"
 #include "FileHandler.h"
-class TaskManager
+#include "Manager.h"
+#include "Project.h"
+class TaskManager : public Manager
 {
 private:
-	std::vector<Task*> m_tasks;
-private:
 	bool isUserAssignedToTask(Task& targetTask, User& user) const;
-	bool isManagerAssignedToTask(Task& targetTask, User& manager) const;
+	bool isLeaderAssignedToTask(Task& targetTask, User& leader) const;
 protected:
 	static TaskManager* m_taskManager;
 protected:
@@ -19,18 +19,18 @@ public:
 	TaskManager(TaskManager &&other) = delete;
 	void operator=(TaskManager& other) = delete;
 	void operator=(TaskManager&& other) = delete;
-	void editTaskName(Task& targetTask, string name);
-	void editTaskDescription(Task& targetTask, string desc);
+	void editName(TaskProject& target, string name) override;
+	void editDescription(TaskProject& targetT, string desc) override;
 	static TaskManager* getInstance();
 
 	void assignUserToTask(Task& targetTask, User& user);
 	void removeUserFromTask(Task& targetTask, User& user);
-	void assignManagerToTask(Task& targetTask, User& manager);
-	void removeManagerFromTask(Task& targetTask, User& manager);
+	void assignLeaderToTask(Task& targetTask, User& leader);
+	void removeLeaderFromTask(Task& targetTask, User& leader);
 	// Mozna popisac wiecej creatow
-	Task& createTask(const std::string& name, Date taskStartDate, Date taskFinishDate);
-	void removeTask(Task* targetTask);
-	void removeAllTasks();
-	void createFile(std::string* fileName = FileHandler::createFileName());
+	Task& create(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& targetProject);
+	bool removeTask(Task& targetTask, Project& targetProject);
+	bool removeAllTasks(Project& targetProject);
+	vector<User> getUsersFromTask(Task& targetTask, Project& targetProject);
 };
 

@@ -129,18 +129,24 @@
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="ProjectManager.cpp" />
     <ClCompile Include="ProjectsManagement.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="TaskProject.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="ProjectManager.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="TaskProject.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>

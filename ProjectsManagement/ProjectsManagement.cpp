@@ -14,8 +14,8 @@ int main()
     xd.push_back("lol");
     TaskManager* t = TaskManager::getInstance();
     Date dat(1, 1, 1111, 1, 1);
-    t->createTask("d", dat, dat);
-    t->createFile();
+   // t->createTask("d", dat, dat);
+   // t->createFile();
     //FileHandler::saveFile(xd);
     //Task task("XD", "xd", )
     

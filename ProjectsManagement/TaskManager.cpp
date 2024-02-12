@@ -7,9 +7,9 @@ bool TaskManager::isUserAssignedToTask(Task& targetTask, User& user) const
 	return (std::find(targetTask.m_users.begin(), targetTask.m_users.end(), &user) != targetTask.m_users.end());
 }
 
-bool TaskManager::isManagerAssignedToTask(Task& targetTask, User& manager) const
+bool TaskManager::isLeaderAssignedToTask(Task& targetTask, User& leader) const
 {
-	return (std::find(targetTask.m_managers.begin(), targetTask.m_managers.end(), &manager) != targetTask.m_users.end());
+	return (std::find(targetTask.m_leaders.begin(), targetTask.m_leaders.end(), &leader) != targetTask.m_users.end());
 }
 
 TaskManager* TaskManager::getInstance()
@@ -22,52 +22,60 @@ TaskManager* TaskManager::getInstance()
 
 void TaskManager::assignUserToTask(Task& targetTask, User& user)
 {
-	isUserAssignedToTask(targetTask, user) ? throw invalid_argument("User: " + user.getName() + " " + user.getSurname() + " is already assign to task: " + targetTask.m_taskName) : targetTask.m_users.push_back(&user);
+	isUserAssignedToTask(targetTask, user) ? throw invalid_argument("User: " + user.getName() + " " + user.getSurname() + " is already assign to task: " + targetTask.m_name) : targetTask.m_users.push_back(&user);
 }
+
 
 void TaskManager::removeUserFromTask(Task& targetTask, User& user)
 {
 	remove(targetTask.m_users.begin(), targetTask.m_users.end(), &user);
 }
 
-void TaskManager::removeManagerFromTask(Task& targetTask, User& manager)
+void TaskManager::removeLeaderFromTask(Task& targetTask, User& leader)
 {
-	remove(targetTask.m_managers.begin(), targetTask.m_users.end(), &manager);
+	remove(targetTask.m_leaders.begin(), targetTask.m_users.end(), &leader);
 }
-Task& TaskManager::createTask(const std::string& name, Date taskStartDate, Date taskFinishDate)
+Task& TaskManager::create(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& targetProject)
 {
-	Task* t = new Task(name, taskStartDate, taskFinishDate);
-	m_tasks.push_back(t);
+	// TU TRZEBA NAPISAC JAK SIE STWORZY PRJECT MANAGERA
+	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
 	return *t;
+
 }
-void TaskManager::removeTask(Task* targetTask)
+bool TaskManager::removeTask(Task& targetTask, Project& targetProject)
 {
-	remove(m_tasks.begin(), m_tasks.end(), targetTask);
-	delete targetTask;
+	// TU DODAC PO OGARNIECIU PROJECY MANAGERA
+	/*remove(m_tasks.begin(), m_tasks.end(), targetTask);
+	delete targetTask; */
+	return false;
 }
-void TaskManager::removeAllTasks()
+bool TaskManager::removeAllTasks(Project& targetProject)
 {
-	for (auto i : m_tasks)
+	// PO NAPISANIU PROECY MANAGERA
+	return 1;
+	/*for (auto i : m_tasks)
 	{
 		delete i;
 	}
-	m_tasks.clear();
+	m_tasks.clear();*/
 }
-void TaskManager::createFile(std::string* fileName)
+vector<User> TaskManager::getUsersFromTask(Task& targetTask, Project& targetProject)
 {
-	FileHandler::saveFile(m_tasks, fileName);
+	//potem
+	return vector<User>();
 }
-void TaskManager::assignManagerToTask(Task& targetTask, User& manager)
+void TaskManager::assignLeaderToTask(Task& targetTask, User& leader)
 {
-	isManagerAssignedToTask(targetTask, manager) ? throw invalid_argument("Manager: " + manager.getName() + " " + manager.getSurname() + " is already assign to task: " + targetTask.m_taskName) : targetTask.m_managers.push_back(&manager);
+	isLeaderAssignedToTask(targetTask, leader) ? throw invalid_argument("Leader: " + leader.getName() + " " + leader.getSurname() + " is already assign to task: " + targetTask.m_name) : targetTask.m_leaders.push_back(&leader);
 }
-void TaskManager::editTaskName(Task& targetTask, string name)
+void TaskManager::editName(TaskProject& target, string name)
 {
-	!name.empty() ? targetTask.m_taskName = name : throw invalid_argument("Provided task name is empty");
+	!name.empty() ? target.setName(name) : throw invalid_argument("Provided task name is empty");
 }
 
-void TaskManager::editTaskDescription(Task& targetTask, string desc)
+void TaskManager::editDescription(TaskProject& target, string desc)
 {
-	!desc.empty() ? targetTask.m_taskDescription = desc : throw invalid_argument("Provided task description is empty");
+	!desc.empty() ? target.setDescription(desc) : throw invalid_argument("Provided task description is empty");
 }
+
 

@@ -27,9 +27,9 @@ void FileHandler::saveFile(const std::vector<Task*>& data, std::string* fileName
 	if (data.size() > 0) {
 		json j;
 		for (auto i : data) {
-			j["TaskName"] = i->getTaskName();
-			j["TaskDescription"] = i->getTaskDescritpion();
-			j["CreationDate"] = i->getTaskCreationDate().getDateTimeAsString();
+			j["TaskName"] = i->getName();
+			j["TaskDescription"] = i->getDescritpion();
+			j["CreationDate"] = i->getCreationDate().getDateTimeAsString();
 			//j[""]
 		}
 		
