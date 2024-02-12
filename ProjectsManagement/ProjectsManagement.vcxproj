@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Allocator.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="Manager.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Allocator.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="Manager.h" />
