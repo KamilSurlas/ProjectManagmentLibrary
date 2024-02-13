@@ -37,13 +37,13 @@ void TaskManager::removeLeaderFromTask(Task& targetTask, User& leader)
 }
 Task& TaskManager::create(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& targetProject)
 {
-	// TU TRZEBA NAPISAC JAK SIE STWORZY PRJECT MANAGERA
 	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
+	ProjectManager::getInstance()->assignTaskToProject(targetProject, *t);
 	return *t;
-
 }
 bool TaskManager::removeTask(Task& targetTask, Project& targetProject)
 {
+	ProjectManager::getInstance().re
 	// TU DODAC PO OGARNIECIU PROJECY MANAGERA
 	/*remove(m_tasks.begin(), m_tasks.end(), targetTask);
 	delete targetTask; */

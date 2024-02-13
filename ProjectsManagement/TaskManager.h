@@ -1,6 +1,7 @@
 #pragma once
 #include "Task.h"
 #include "FileHandler.h"
+#include "ProjectManager.h"
 #include "Manager.h"
 #include "Project.h"
 class TaskManager : public Manager

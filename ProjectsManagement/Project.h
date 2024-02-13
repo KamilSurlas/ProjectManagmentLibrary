@@ -12,7 +12,7 @@ private:
 	User* m_manager;
 	friend class ProjectManager;
 	Project(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate);
-public:
-	std::vector<User> getAllParticipants();
+	void addTask(Task& task);
+	bool addTask()
 };
 

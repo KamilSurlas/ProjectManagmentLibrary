@@ -68,7 +68,17 @@ void ProjectManager::removeManagerFromProject(Project& targetProject, User& mana
 	!(targetProject.m_manager == nullptr) ? targetProject.m_manager = nullptr : throw invalid_argument("Project: " + targetProject.m_name + "does not have manager assigned to it");
 }
 
+void ProjectManager::assignTaskToProject(Project& targetProject, Task& task)
+{
+	!isTaskAssignedToProject(targetProject,task) ? targetProject.m_tasks.push_back(&task) : throw invalid_argument("Task: " + task.getName() + "is already assigned to the project: " + targetProject.m_name);
+}
+
 bool ProjectManager::isUserAssignedToProject(Project& targetProject, User& user) const
 {
 	return (std::find(targetProject.m_users.begin(), targetProject.m_users.end(), &user) != targetProject.m_users.end());
+}
+
+bool ProjectManager::isTaskAssignedToProject(Project& targetProject, Task& task) const
+{
+	return (std::find(targetProject.m_tasks.begin(), targetProject.m_tasks.end(), &task) != targetProject.m_tasks.end());
 }

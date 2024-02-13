@@ -21,8 +21,10 @@ public:
 	void removeUserFromProject(Project& targetProject, User& user);
 	void assignManagerToProject(Project& targetProject, User& manager);
 	void removeManagerFromProject(Project& targetProject, User& manager);
+	void assignTaskToProject(Project& targetProject, Task& task);
 private:
 	bool ifProjectExists(Project& project);
 	bool isUserAssignedToProject(Project& targetProject, User& user) const;
+	bool isTaskAssignedToProject(Project& targetProject, Task& task) const;
 };
 
