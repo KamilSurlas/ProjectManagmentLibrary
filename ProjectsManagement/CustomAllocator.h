@@ -1,5 +1,6 @@
 #pragma once
 #include <stdexcept>
+
 template<typename T, size_t sizeLimit = 100>
 class CustomAllocator
 {

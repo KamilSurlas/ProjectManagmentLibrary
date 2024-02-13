@@ -27,6 +27,14 @@ public:
 	vector<User*> getAllParticipantsFromProject(Project& project) override;
 	void removeAllTasks(Project& project) override;
 	void assignUserToProject(Project& project, User& user) override;
+	void removeUserFromProject(Project& project, User& user) override;
+	void assignManagerToProject(Project& project, User& manager) override;
+	void removeManagerFromProject(Project& project, User& manager) override;
+	void assignTaskToProject(Project& project, Task& task) override;
+	void assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) override;
+	Project& create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) override;
+	string printProject(Project& project) override;
+	string printProjects() override;
 private:
 	bool isTaskAssignedToProject(Project& project, Task& task) const override;
 };

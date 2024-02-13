@@ -24,7 +24,7 @@ void CustomAllocator<T, sizeLimit>::realloc(int newLimit) {
     T* temp = new T[newLimit];
 
     if (temp == nullptr) {
-        throw std::bad_alloc("Failed allocation");
+        throw std::bad_alloc();
     }
 
     for (int i = 0; i < sizeLimit; i++) {

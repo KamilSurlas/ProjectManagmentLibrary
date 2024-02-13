@@ -15,6 +15,20 @@ Project& ProjectManager::create(const std::string& name, const std::string& desc
 	m_projects.push_back(p);
 	return *p;
 }
+string ProjectManager::printProject(Project& project)
+{
+	return project.print();
+}
+string ProjectManager::printProjects()
+{
+	string text;
+	for (const auto& project : m_projects)
+	{
+		text += project->print() + "\n";
+	}
+
+	return text;
+}
 bool ProjectManager::isTaskAssignedToProject(Project& project, Task& task) const 
 {
 	return (std::find(project.m_tasks.begin(), project.m_tasks.end(), &task) != project.m_tasks.end());
@@ -91,8 +105,33 @@ vector<User*> ProjectManager::getUsersFromProject(Project& project)
 	{
 		return project.m_users;
 	}
+	throw invalid_argument("Project: " + project.m_name +"does not have any users assigned to it");
 }
 
+void ProjectManager::assignUserToProject(Project& project, User& user)
+{
+	project.addUser(user);
+}
+
+void ProjectManager::removeUserFromProject(Project& project, User& user)
+{
+	project.removeUser(user);
+}
+
+void ProjectManager::assignManagerToProject(Project& project, User& manager)
+{
+	project.assignManager(manager);
+}
+
+void ProjectManager::removeManagerFromProject(Project& project, User& manager)
+{
+	project.removeManager();
+}
+
+void ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
+{
+	project.addTask(name, desc, taskStartDate, taskFinishDate);
+}
 vector<User*> ProjectManager::getAllParticipantsFromProject(Project& project)
 {
 	return project.getAllParticipants();
@@ -130,4 +169,8 @@ void ProjectManager::editTaskDescription(Project& project, Task& task, string de
 	{
 		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
+}
+void ProjectManager::assignTaskToProject(Project& project, Task& task)
+{
+	project.addTask(task);
 }

@@ -23,9 +23,11 @@ protected:
 	virtual void assignManagerToProject(Project& project, User& manager) =0;
 	virtual void removeManagerFromProject(Project& project, User& manager)=0;
 	virtual void assignTaskToProject(Project& project, Task& task) = 0;
-	virtual bool isUserAssignedToProject(Project& project, User& user) const = 0;
+	virtual void assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) = 0;
 	virtual bool isTaskAssignedToProject(Project& project, Task& task) const = 0;
 	virtual Project& create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) = 0;
+	virtual string printProject(Project& project) = 0;
+	virtual string printProjects() = 0;
 public:
 	virtual ~Manager() {}
 };
