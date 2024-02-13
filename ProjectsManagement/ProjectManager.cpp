@@ -9,76 +9,125 @@ ProjectManager* ProjectManager::getInstance()
 
 	return m_projectManager;
 }
-
-void ProjectManager::editName(TaskProject& target, string name)
-{
-	!name.empty() ? target.setName(name) : throw invalid_argument("Provided task name is empty");
-}
-
-void ProjectManager::editDescription(TaskProject& target, string desc)
-{
-	!desc.empty() ? target.setDescription(desc) : throw invalid_argument("Provided description is empty");
-}
-
 Project& ProjectManager::create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
 	m_projects.push_back(p);
 	return *p;
 }
-
-bool ProjectManager::ifProjectExists(Project& project)
+bool ProjectManager::isTaskAssignedToProject(Project& project, Task& task) const 
 {
-	return (std::find(m_projects.begin(), m_projects.end(), &project) != m_projects.end());
+	return (std::find(project.m_tasks.begin(), project.m_tasks.end(), &task) != project.m_tasks.end());
 }
 
-void ProjectManager::assignUserToProject(Project& targetProject, User& user)
+void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 {
-	if (!ifProjectExists(targetProject))
+	if (isTaskAssignedToProject(project,task))
 	{
-		throw invalid_argument("Project: " + targetProject.m_name + "does not exist");
+		project.assignUserToTask(task,user);
 	}
-	isUserAssignedToProject(targetProject, user) ? throw invalid_argument("User: " + user.getName() + " " + user.getSurname() + " is already assign to project: " + targetProject.m_name) : targetProject.m_users.push_back(&user);
-}
-
-void ProjectManager::removeUserFromProject(Project& targetProject, User& user)
-{
-	if (!ifProjectExists(targetProject))
+	else
 	{
-		throw invalid_argument("Project: " + targetProject.m_name + "does not exist");
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
-	isUserAssignedToProject(targetProject, user) ? throw invalid_argument("User: " + user.getName() + " " + user.getSurname() + " is already assign to project: " + targetProject.m_name) : remove(targetProject.m_users.begin(), targetProject.m_users.end(), &user);
 }
 
-void ProjectManager::assignManagerToProject(Project& targetProject, User& manager)
+void ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
 {
-	if (!ifProjectExists(targetProject))
+	if (isTaskAssignedToProject(project, task))
 	{
-		throw invalid_argument("Project: " + targetProject.m_name + "does not exist");
+		project.removeUserFromTask(task, user);
 	}
-	targetProject.m_manager == nullptr ? targetProject.m_manager = &manager : throw invalid_argument("Project: " + targetProject.m_name + "already has manager assigned");
-}
-
-void ProjectManager::removeManagerFromProject(Project& targetProject, User& manager)
-{
-	if (!ifProjectExists(targetProject))
+	else
 	{
-		throw invalid_argument("Project: " + targetProject.m_name + "does not exist");
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
-	!(targetProject.m_manager == nullptr) ? targetProject.m_manager = nullptr : throw invalid_argument("Project: " + targetProject.m_name + "does not have manager assigned to it");
 }
 
-void ProjectManager::assignTaskToProject(Project& targetProject, Task& task)
+void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& leader)
 {
-	!isTaskAssignedToProject(targetProject,task) ? targetProject.m_tasks.push_back(&task) : throw invalid_argument("Task: " + task.getName() + "is already assigned to the project: " + targetProject.m_name);
+	if (isTaskAssignedToProject(project, task))
+	{
+		project.assignLeaderToTask(task, leader);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
 }
 
-bool ProjectManager::isUserAssignedToProject(Project& targetProject, User& user) const
+void ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& leader)
 {
-	return (std::find(targetProject.m_users.begin(), targetProject.m_users.end(), &user) != targetProject.m_users.end());
+	if (isTaskAssignedToProject(project, task))
+	{
+		project.removeLeaderFromTask(task, leader);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
 }
 
-bool ProjectManager::isTaskAssignedToProject(Project& targetProject, Task& task) const
+void ProjectManager::removeTask(Project& project, Task& task)
 {
-	return (std::find(targetProject.m_tasks.begin(), targetProject.m_tasks.end(), &task) != targetProject.m_tasks.end());
+	if (isTaskAssignedToProject(project, task))
+	{
+		project.removeTask(task);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
+}
+
+void ProjectManager::removeAllTasks(Project& project)
+{
+	project.removeAllTasks();
+}
+
+vector<User*> ProjectManager::getUsersFromProject(Project& project)
+{
+	if (project.m_users.size() > 0)
+	{
+		return project.m_users;
+	}
+}
+
+vector<User*> ProjectManager::getAllParticipantsFromProject(Project& project)
+{
+	return project.getAllParticipants();
+}
+
+void ProjectManager::editProjectName(Project& project, string name)
+{
+	!name.empty() ? project.setName(name) : throw invalid_argument("Provided project name is empty");
+}
+
+void ProjectManager::editTaskName(Project& project, Task& task, string name)
+{
+	if (isTaskAssignedToProject(project,task))
+	{
+		!name.empty() ? task.setName(name) : throw invalid_argument("Provided task name is empty");
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
+}
+
+void ProjectManager::editProjectDescription(Project& project, string desc)
+{
+	!desc.empty() ? project.setDescription(desc) : throw invalid_argument("Provided project description is empty");
+}
+
+void ProjectManager::editTaskDescription(Project& project, Task& task, string desc)
+{
+	if (isTaskAssignedToProject(project, task))
+	{
+		!desc.empty() ? task.setDescription(desc) : throw invalid_argument("Provided task description is empty");
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
 }

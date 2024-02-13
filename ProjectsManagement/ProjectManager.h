@@ -14,17 +14,20 @@ protected:
 	}
 public:
 	static ProjectManager* getInstance();
-	void editName(TaskProject& target, string name) override;
-	void editDescription(TaskProject& targetT, string desc) override;
-	Project& create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate);
-	void assignUserToProject(Project& targetProject, User& user);
-	void removeUserFromProject(Project& targetProject, User& user);
-	void assignManagerToProject(Project& targetProject, User& manager);
-	void removeManagerFromProject(Project& targetProject, User& manager);
-	void assignTaskToProject(Project& targetProject, Task& task);
+	void editProjectName(Project& project, string name) override;
+	void editTaskName(Project& project, Task& task, string name) override;
+	void editProjectDescription(Project& project, string desc) override;
+	void editTaskDescription(Project& project, Task& task, string desc) override;
+	void assignUserToTask(Project& project, Task& task, User& user) override;
+	void removeUserFromTask(Project& project, Task& task, User& user) override;
+	void assignLeaderToTask(Project& project, Task& task, User& leader) override;
+	void removeLeaderFromTask(Project& project, Task& task, User& leader) override;
+	void removeTask(Project& project, Task& task) override;
+	vector<User*> getUsersFromProject(Project& project) override;
+	vector<User*> getAllParticipantsFromProject(Project& project) override;
+	void removeAllTasks(Project& project) override;
+	void assignUserToProject(Project& project, User& user) override;
 private:
-	bool ifProjectExists(Project& project);
-	bool isUserAssignedToProject(Project& targetProject, User& user) const;
-	bool isTaskAssignedToProject(Project& targetProject, Task& task) const;
+	bool isTaskAssignedToProject(Project& project, Task& task) const override;
 };
 
