@@ -1,19 +1,44 @@
-﻿// ProjectsManagement.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
+﻿#include <iostream>
 
-#include <iostream>
-#include "User.h"
-#include "FileHandler.h"
-#include "Task.h"
-#include "TaskManager.h"
+#include "CustomAllocator.h"
+#include "CustomAllocator.cpp"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    std::vector<string> xd;
-    xd.push_back("lol");
-    TaskManager* t = TaskManager::getInstance();
-    Date dat(1, 1, 1111, 1, 1);
+
+    //TaskManager* t = TaskManager::getInstance();
+
+    CustomAllocator<int, 5> allocator;
+
+    // Dodajemy kilka elementów
+    for (int i = 0; i < 5; ++i) {
+        allocator.addElement(i);
+    }
+
+     //Wyświetlamy elementy za pomocą operatora indeksowania
+    std::cout << "Elements in Allocator: ";
+    for (int i = 0; i < 5; ++i) {
+        std::cout << allocator[i] << " ";
+    }
+    std::cout << std::endl;
+
+     //Testujemy usuwanie elementu
+    int elementToRemove = 3;
+    if (allocator.removeElement(elementToRemove)) {
+        std::cout << "Element " << elementToRemove << " removed successfully." << std::endl;
+    }
+    else {
+        std::cout << "Element " << elementToRemove << " not found." << std::endl;
+    }
+
+    // Wyświetlamy aktualne elementy
+    std::cout << "Elements in Allocator after removal: ";
+    for (int i = 0; i < 4; ++i) {
+        std::cout << allocator[i] << " ";
+    }
+    std::cout << std::endl;
+
+
    // t->createTask("d", dat, dat);
    // t->createFile();
     //FileHandler::saveFile(xd);
@@ -21,13 +46,3 @@ int main()
     
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
-
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
