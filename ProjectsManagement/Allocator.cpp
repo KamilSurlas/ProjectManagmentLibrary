@@ -51,3 +51,17 @@ T& Allocator<T, limit>::operator[](int idx) {
         throw std::out_of_range("Provided index is out of range");
     }
 }
+
+template<typename T, int limit>
+bool Allocator<T, limit>::removeElement(const T& element)
+{
+    for (size_t i = 0; i < counter; i++)
+    {
+        if (this->data[i] == element) {
+            std::swap(this->data[i], this->data[counter - 1]);
+            counter--;
+            return true;
+        }
+    }
+    return false;
+}

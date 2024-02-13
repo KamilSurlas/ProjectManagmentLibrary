@@ -12,5 +12,6 @@ public:
 	~Allocator();
 	void addElement(T& element);
 	T& operator[](int idx);
+	bool removeElement(const T& element);
 };
 
