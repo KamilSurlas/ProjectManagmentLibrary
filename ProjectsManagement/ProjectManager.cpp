@@ -130,7 +130,8 @@ void ProjectManager::removeManagerFromProject(Project& project, User& manager)
 
 void ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
 {
-	project.addTask(name, desc, taskStartDate, taskFinishDate);
+	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
+	project.addTask(*t);
 }
 vector<User*> ProjectManager::getAllParticipantsFromProject(Project& project)
 {

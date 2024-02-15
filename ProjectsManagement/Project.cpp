@@ -1,4 +1,5 @@
 #include "Project.h"
+#include "CustomException.h"
 
 bool Project::isUserAssignedToTask(Task& task, User& user) const
 {
@@ -22,14 +23,15 @@ Project::Project(const std::string& name, const std::string& desc, Date projectS
 
 void Project::addTask(Task& task)
 {
+	if (m_finishDate < task.getFinishDate() || m_creationDate > task.getCreationDate())
+	{
+		throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
+	}
+	m_tasks.push_back(&task);
 }
-
-void Project::addTask(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate)
-{
-}
-
 void Project::removeTask(Task& task)
 {
+
 }
 
 void Project::removeAllTasks()
@@ -38,6 +40,7 @@ void Project::removeAllTasks()
 
 void Project::addUser(User& user)
 {
+	m_users.push_back(&user);
 }
 
 void Project::removeUser(User& user)

@@ -16,7 +16,6 @@ private:
 	bool isUserAssignedToProject(User& user) const;
 	Project(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate);
 	void addTask(Task& task);
-	void addTask(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate);
 	void removeTask(Task& task);
 	void removeAllTasks();
 	void addUser(User& user);

@@ -53,6 +53,57 @@ std::string Date::getDateTimeAsString()
 	return this->getDateAsString() + " " + addLeadingZero(m_hour) + ":" + addLeadingZero(m_min);
 }
 
+bool Date::operator>(const Date& date)
+{
+	if (m_year == date.m_year)
+	{
+		if (m_month == date.m_month)
+		{
+			return m_day > date.m_day;
+		}
+		else
+		{
+			return m_month > date.m_month;
+		}
+	}
+	else 
+	{
+		return m_year > date.m_year;
+	}
+}
+
+bool Date::operator==(const Date& date)
+{
+	if (this != &date)
+	{
+		return m_year == date.m_year && m_month == date.m_month && m_day == date.m_day;
+	}
+}
+
+bool Date::operator!=(const Date& date)
+{
+	return !(*this == date);
+}
+
+bool Date::operator<(const Date& date)
+{
+	if (m_year == date.m_year)
+	{
+		if (m_month == date.m_month)
+		{
+			return m_day < date.m_day;
+		}
+		else
+		{
+			return m_month < date.m_month;
+		}
+	}
+	else
+	{
+		return m_year < date.m_year;
+	}
+}
+
 bool Date::isValidDate(unsigned int day, unsigned int month, unsigned int year)
 {
 	return (day >= 1 && day <= 31) && (month >= 1 && month <= 12) && (year >= 1000 && year <= 9999);

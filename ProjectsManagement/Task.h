@@ -8,8 +8,10 @@ class Task : public TaskProject
 private:
 	std::vector<User*> m_users;
 	std::vector<User*> m_leaders;
-	friend class TaskManager;
+	friend class ProjectManager;
 private:
-	Task(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate);	
+	Task(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate);
+public:
+	void addUser()
 };
 

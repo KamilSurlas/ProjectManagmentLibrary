@@ -21,5 +21,9 @@ public:
 	void editDate(unsigned int year, unsigned int month, unsigned int day); 
 	std::string getDateAsString();
 	std::string getDateTimeAsString();
+	bool operator<(const Date& date);
+	bool operator>(const Date& date);
+	bool operator==(const Date& date);
+	bool operator!=(const Date& date);
 };
 
