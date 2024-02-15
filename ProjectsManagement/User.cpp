@@ -45,6 +45,20 @@ void User::setPhoneNumber(const string& newPhoneNumber)
 
 
 
+bool User::operator==(const User& user)
+{
+	if (this != &user)
+	{
+		return m_mail == user.m_mail;
+	}
+	return true;
+}
+
+bool User::operator!=(const User& user)
+{
+	return !(*this == user);
+}
+
 //Private
 bool User::isValidName(const string& name)
 {

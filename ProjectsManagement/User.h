@@ -21,7 +21,7 @@ private:
 public:
 	User(string name, string surname, string mail, string username, string phoneNumber);
 	User(string name, string surname, string mail, string username);
-
+	User() {}
 	void setName(const string& newName);
 	void setSurname(const string& newSurname);
 	void setMail(const string& newMail);
@@ -32,6 +32,8 @@ public:
 	string getMail() { return m_mail; }
 	string getUsername(){ return m_username; }
 	string getPhoneNumber() { return m_phoneNumber; }
+	bool operator==(const User& user);
+	bool operator!=(const User& user);
 //Methods
 private:
 	bool isValidName(const string& name);

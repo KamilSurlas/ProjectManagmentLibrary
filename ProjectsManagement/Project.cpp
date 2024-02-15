@@ -19,6 +19,7 @@ bool Project::isUserAssignedToProject(User& user) const
 Project::Project(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 	:TaskProject(name,desc,projectFinishDate,projectFinishDate)
 {
+
 }
 
 void Project::addTask(Task& task)
@@ -49,10 +50,18 @@ void Project::removeUser(User& user)
 
 void Project::assignManager(User& manager)
 {
+	if (m_manager == nullptr)
+	{
+		m_manager = &manager;
+	}
 }
 
 void Project::removeManager()
 {
+	if (m_manager != nullptr)
+	{
+		m_manager == nullptr;
+	}
 }
 
 void Project::assignUserToTask(Task& task, User& user)

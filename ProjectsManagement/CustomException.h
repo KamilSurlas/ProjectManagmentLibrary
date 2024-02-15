@@ -16,3 +16,8 @@ class invalid_task: public CustomException
 public:
 	invalid_task(string message) :CustomException(message) {}
 };
+class invalid_date : public CustomException
+{
+public:
+	invalid_date(string message) :CustomException(message) {}
+};

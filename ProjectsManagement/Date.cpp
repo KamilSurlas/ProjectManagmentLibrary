@@ -77,7 +77,8 @@ bool Date::operator==(const Date& date)
 	if (this != &date)
 	{
 		return m_year == date.m_year && m_month == date.m_month && m_day == date.m_day;
-	}
+	} 
+	return true;
 }
 
 bool Date::operator!=(const Date& date)

@@ -9,7 +9,7 @@ class Project : public TaskProject
 private: 
 	std::vector<Task*> m_tasks;
 	std::vector<User*> m_users;
-	User* m_manager;
+	User* m_manager = nullptr;
 	friend class ProjectManager;
 	bool isUserAssignedToTask(Task& task, User& user) const;
 	bool isLeaderAssignedToTask(Task& task, User& leader) const;
