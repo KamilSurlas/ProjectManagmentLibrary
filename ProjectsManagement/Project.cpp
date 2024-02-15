@@ -57,18 +57,22 @@ void Project::removeManager()
 
 void Project::assignUserToTask(Task& task, User& user)
 {
+	task.addUser(user);
 }
 
 void Project::removeUserFromTask(Task& task, User& user)
 {
+	task.removeUser(user);
 }
 
 void Project::assignLeaderToTask(Task& task, User& leader)
 {
+	task.addLeader(leader);
 }
 
 void Project::removeLeaderFromTask(Task& task, User& leader)
 {
+	task.removeLeader(leader);
 }
 
 vector<User*> Project::getAllParticipants()
