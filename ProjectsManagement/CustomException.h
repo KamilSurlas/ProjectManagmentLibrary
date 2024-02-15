@@ -21,3 +21,9 @@ class invalid_date : public CustomException
 public:
 	invalid_date(string message) :CustomException(message) {}
 };
+
+class invalid_user : public CustomException
+{
+public:
+	invalid_user(string message) :CustomException(message) {}
+};

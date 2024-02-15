@@ -59,14 +59,32 @@ bool Date::operator>(const Date& date)
 	{
 		if (m_month == date.m_month)
 		{
-			return m_day > date.m_day;
+
+			if (m_day == date.m_day)
+			{
+
+				if (m_hour == date.m_hour)
+				{
+					return m_min > date.m_min;
+				}
+
+				else
+				{
+					return m_hour > date.m_hour;
+				}
+			}
+			else
+			{
+				return m_day > date.m_day;
+			}
+
 		}
 		else
 		{
 			return m_month > date.m_month;
 		}
 	}
-	else 
+	else
 	{
 		return m_year > date.m_year;
 	}
@@ -76,7 +94,7 @@ bool Date::operator==(const Date& date)
 {
 	if (this != &date)
 	{
-		return m_year == date.m_year && m_month == date.m_month && m_day == date.m_day;
+		return m_year == date.m_year && m_month == date.m_month && m_day == date.m_day && m_hour == date.m_hour && m_min == date.m_min;
 	} 
 	return true;
 }
@@ -92,7 +110,25 @@ bool Date::operator<(const Date& date)
 	{
 		if (m_month == date.m_month)
 		{
-			return m_day < date.m_day;
+
+			if (m_day == date.m_day) 
+			{
+
+				if (m_hour == date.m_hour) 
+				{
+					return m_min < date.m_min;
+				}
+
+				else 
+				{
+					return m_hour < date.m_hour;
+				}
+			}
+			else 
+			{
+				return m_day < date.m_day;
+			}
+			
 		}
 		else
 		{

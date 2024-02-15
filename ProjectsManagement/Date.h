@@ -16,7 +16,8 @@ private:
 	std::string addLeadingZero(unsigned int value);
 public:
 	static Date getCurrentDate();
-	Date(unsigned int d, unsigned int m, unsigned int y, unsigned int h, unsigned int min); 
+	Date(unsigned int d, unsigned int m, unsigned int y, unsigned int h, unsigned int min);
+	Date() {}
 	void editTime(unsigned int hour, unsigned int min); 
 	void editDate(unsigned int year, unsigned int month, unsigned int day); 
 	std::string getDateAsString();

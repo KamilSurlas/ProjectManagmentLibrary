@@ -3,6 +3,7 @@
 #include "Date.h"
 #include "CustomAllocator.h"
 #include "CustomAllocator.cpp"
+#include "CustomException.h"
 class TaskProject
 {
 protected:
@@ -11,6 +12,7 @@ protected:
 	Date m_creationDate = Date::getCurrentDate();
 	Date m_finishDate;
 	Date m_startDate;
+	
 public:
 	TaskProject(const std::string& name, const std::string& desc, Date startDate, Date finishDate);
 	string getName() { return m_name; }
@@ -20,8 +22,9 @@ public:
 	Date getCreationDate() { return m_startDate; }
 	void setName(std::string name) { m_name = name; }
 	void setDescription(std::string desc) { m_description = desc; }
-	void setStartDate(Date startDate) { m_startDate = startDate; }
-	void setFinishDate(Date finishDate) { m_finishDate = finishDate; }
+	virtual void setStartDate(Date startDate);
+	virtual void setFinishDate(Date finishDate);
 	virtual ~TaskProject() {}
+	TaskProject() {}
 };
 

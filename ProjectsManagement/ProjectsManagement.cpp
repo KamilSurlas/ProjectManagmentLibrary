@@ -2,6 +2,7 @@
 
 #include "CustomAllocator.h"
 #include "CustomAllocator.cpp"
+#include "User.h"
 
 int main()
 {
@@ -38,11 +39,29 @@ int main()
     }
     std::cout << std::endl;
 
+    CustomAllocator<User> allocator2;
 
-   // t->createTask("d", dat, dat);
-   // t->createFile();
-    //FileHandler::saveFile(xd);
-    //Task task("XD", "xd", )
+    User u1("m", "w", "xdd@wp.pl", "koks");
+    User u2("xd", "xd", "xdd2@wp.pl", "koks");
+    try {
+        allocator2.addElement(u1);
+        allocator2.addElement(u1);
+    }
+    catch (std::invalid_argument s) {
+        std::cout << s.what();
+    }
+    allocator2.addElement(u2);
+
     
+    /*for (int i = 0; i < 3; ++i) {
+        std::cout << &allocator2[i] << "\n";
+    }
+
+    allocator2.removeElement(u2);
+    std::cout << "\nDDDDDD:\n";
+    for (int i = 0; i < 2; ++i) {
+        std::cout << &allocator2[i] << "\n";
+    }*/
+
 }
 

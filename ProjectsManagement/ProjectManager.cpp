@@ -2,6 +2,11 @@
 
 ProjectManager* ProjectManager::m_projectManager = nullptr;
 
+bool ProjectManager::isTaskAssignedToProject(Project& project, Task& task)
+{
+	return project.m_tasks.isAssigned(task);
+}
+
 ProjectManager* ProjectManager::getInstance()
 {
 	if (m_projectManager == nullptr)
@@ -12,7 +17,7 @@ ProjectManager* ProjectManager::getInstance()
 Project& ProjectManager::create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
-	m_projects.push_back(p);
+	m_projects.addElement(*p);
 	return *p;
 }
 string ProjectManager::printProject(Project& project)
@@ -22,16 +27,46 @@ string ProjectManager::printProject(Project& project)
 string ProjectManager::printProjects()
 {
 	string text;
-	for (const auto& project : m_projects)
+	for (int i = 0; i < m_projects.getSize(); i++)
 	{
-		text += project->print() + "\n";
+		text += m_projects[i].print() + "\n";
 	}
 
 	return text;
 }
-bool ProjectManager::isTaskAssignedToProject(Project& project, Task& task) const 
+
+void ProjectManager::changeFinishDate(Project& project, Date newDate)
 {
-	return (std::find(project.m_tasks.begin(), project.m_tasks.end(), &task) != project.m_tasks.end());
+	project.setFinishDate(newDate);
+}
+
+void ProjectManager::changeStartDate(Project& project, Date newDate)
+{
+	project.setStartDate(newDate);
+}
+
+void ProjectManager::changeFinishDate(Project& project, Task& task, Date newDate)
+{
+	if (isTaskAssignedToProject(project, task))
+	{
+		project.changeTaskFinishDate(task, newDate);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
+}
+
+void ProjectManager::changeStartDate(Project& project, Task& task, Date newDate)
+{
+	if (isTaskAssignedToProject(project, task))
+	{
+		project.changeTaskStartDate(task, newDate);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
 }
 
 void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
@@ -99,14 +134,6 @@ void ProjectManager::removeAllTasks(Project& project)
 	project.removeAllTasks();
 }
 
-vector<User*> ProjectManager::getUsersFromProject(Project& project)
-{
-	if (project.m_users.size() > 0)
-	{
-		return project.m_users;
-	}
-	throw invalid_argument("Project: " + project.m_name +"does not have any users assigned to it");
-}
 
 void ProjectManager::assignUserToProject(Project& project, User& user)
 {
@@ -133,7 +160,7 @@ void ProjectManager::assignTaskToProject(const std::string& name, const std::str
 	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
 	project.addTask(*t);
 }
-vector<User*> ProjectManager::getAllParticipantsFromProject(Project& project)
+vector<User> ProjectManager::getAllParticipantsFromProject(Project& project)
 {
 	return project.getAllParticipants();
 }

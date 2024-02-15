@@ -11,8 +11,12 @@ CustomAllocator<T, sizeLimit>::CustomAllocator() {
 
 template<typename T, size_t sizeLimit>
 CustomAllocator<T, sizeLimit>::~CustomAllocator() {
-    if (this->data != nullptr)
+    if (this->data != nullptr) {
         delete[] this->data;
+        this->data = 0;
+        counter = 0;
+    }
+        
 }
 
 template<typename T, size_t sizeLimit>
@@ -38,12 +42,47 @@ void CustomAllocator<T, sizeLimit>::realloc(int newLimit) {
 }
 
 template<typename T, size_t sizeLimit>
+bool CustomAllocator<T, sizeLimit>::isAssigned(T& element)
+{
+    for (int i = 0; i < counter; i++) {
+        if (element == data[i])
+            return true;
+    }
+
+    return false;
+}
+
+template<typename T, size_t sizeLimit>
+bool CustomAllocator<T, sizeLimit>::operator==(const CustomAllocator& rhs)
+{
+    if (this->counter != rhs.counter)
+        return false;
+
+    for (int i = 0; i < counter; i++) {
+        if (data[i] != rhs.data[i])
+            return false;
+    }
+
+    return true;
+}
+
+template<typename T, size_t sizeLimit>
+bool CustomAllocator<T, sizeLimit>::operator!=(const CustomAllocator& rhs)
+{
+    return !(*this == rhs);
+}
+
+template<typename T, size_t sizeLimit>
 void CustomAllocator<T, sizeLimit>::addElement(T& element) {
-    this->data[counter] = element;
-    counter++;
-    
-    if (counter >= sizeLimit)
-        realloc(sizeLimit + 100);
+    if (isAssigned(element))
+        throw std::invalid_argument("Element is assigned to collection");
+    else {
+        this->data[counter] = element;
+        counter++;
+
+        if (counter >= sizeLimit)
+            realloc(sizeLimit + 100);
+    } 
 }
 
 template<typename T, size_t sizeLimit>
@@ -77,4 +116,13 @@ bool CustomAllocator<T, sizeLimit>::removeElement(const T& element)
         }
     }
     return false;
+}
+
+template<typename T, size_t sizeLimit>
+void CustomAllocator<T, sizeLimit>::removeAll()
+{
+    if (this->data != nullptr)
+        delete[] this->data;
+    counter = 0;
+    this->data = nullptr;
 }

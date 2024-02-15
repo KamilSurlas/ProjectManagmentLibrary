@@ -10,10 +10,17 @@ private:
 	friend class ProjectManager;
 private:
 	Task(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate);
+	bool compareFields(const Task& task);
+	
 public:
+	Task() {}
 	void addUser(User& usr);
 	void removeUser(const User& usr);
 	void addLeader(User& ldr);
 	void removeLeader(const User& ldr);
+	bool operator==(const Task& rhs);
+	bool operator!=(const Task& rhs);
+	Task& operator=(const Task& task);
+	Task(const Task& task);
 };
 
