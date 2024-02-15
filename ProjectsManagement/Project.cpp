@@ -31,9 +31,9 @@ void Project::addUser(User& user)
 	m_users.addElement(user);
 }
 
-void Project::removeUser(User& user)
+void Project::removeUser(const User& usr)
 {
-	m_users.removeElement(user);
+	m_users.removeElement(usr);
 }
 
 void Project::assignManager(User& manager)
