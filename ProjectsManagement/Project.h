@@ -25,6 +25,7 @@ private:
 	void removeLeaderFromTask(Task& task, User& leader);
 	void changeTaskStartDate(Task& task, Date newDate);
 	void changeTaskFinishDate(Task& task, Date newDate);
+
 public:
 	string print(char ch = '\n');
 	Project() {}

@@ -16,7 +16,7 @@ protected:
 	virtual void removeLeaderFromTask(Project& project, Task& task, User& leader) = 0;
 	virtual void removeTask(Project& project, Task& task) = 0;
 	virtual void removeAllTasks(Project& project) = 0;
-	virtual vector<User> getAllParticipantsFromProject(Project& project) = 0;
+	virtual CustomAllocator<User>& getAllParticipantsFromProject(Project& project) = 0;
 	virtual void assignUserToProject(Project& project, User& user) = 0;
 	virtual void removeUserFromProject(Project& project, User& user) = 0;
 	virtual void assignManagerToProject(Project& project, User& manager) =0;

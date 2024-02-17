@@ -1,4 +1,5 @@
 #include "FileHandler.h"
+#include "CustomAllocator.cpp"
 
 std::string* FileHandler::createFileName()
 {

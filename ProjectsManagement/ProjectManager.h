@@ -25,7 +25,7 @@ public:
 	void assignLeaderToTask(Project& project, Task& task, User& leader) override;
 	void removeLeaderFromTask(Project& project, Task& task, User& leader) override;
 	void removeTask(Project& project, Task& task) override;
-	vector<User> getAllParticipantsFromProject(Project& project) override;
+	CustomAllocator<User>& getAllParticipantsFromProject(Project& project) override;
 	void removeAllTasks(Project& project) override;
 	void assignUserToProject(Project& project, User& user) override;
 	void removeUserFromProject(Project& project, User& user) override;

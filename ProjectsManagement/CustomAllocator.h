@@ -8,17 +8,109 @@ private:
 	T* data = nullptr;
 	int counter;
 	int limit;
-	void realloc(int newLimit);
+	void realloc(int newLimit) {
+		if (newLimit <= 0) {
+			throw std::invalid_argument("Wrong argument");
+		}
+
+		T* temp = new T[newLimit];
+
+		if (temp == nullptr) {
+			throw std::bad_alloc();
+		}
+
+		for (int i = 0; i < sizeLimit; i++) {
+			temp[i] = this->data[i];
+		}
+
+		delete[] this->data;
+		this->data = temp;
+		temp = nullptr;
+		limit = newLimit;
+	};
 public:
-	CustomAllocator();
-	~CustomAllocator();
-	bool operator==(const CustomAllocator&);
-	bool operator!=(const CustomAllocator&);
-	void addElement(T& element);
-	T& operator[](int idx);
-	bool removeElement(const T& element);
+	CustomAllocator() {
+		if (sizeLimit <= 0)
+			throw std::invalid_argument("Size limit cannot be less or equal 0");
+		limit = sizeLimit;
+		this->data = new T[limit];
+		counter = 0;
+	};
+	~CustomAllocator() {
+		if (this->data != nullptr) {
+			delete[] this->data;
+			this->data = 0;
+			counter = 0;
+		}
+
+	};
+	bool operator==(const CustomAllocator& rhs) {
+		if (this->counter != rhs.counter)
+			return false;
+
+		for (int i = 0; i < counter; i++) {
+			if (data[i] != rhs.data[i])
+				return false;
+		}
+
+		return true;
+	};
+	bool operator!=(const CustomAllocator& rhs) {
+		return !(*this == rhs);
+	};
+	void addElement(T& element) {
+		if (isAssigned(element))
+			throw std::invalid_argument("Element is assigned to collection");
+		else {
+			this->data[counter] = element;
+			counter++;
+
+			if (counter >= sizeLimit)
+				realloc(sizeLimit + 100);
+		}
+	};
+	T& operator[](int idx) {
+		if (0 <= idx && idx < counter) {
+			return this->data[idx];
+		}
+		else {
+			throw std::out_of_range("Provided index is out of range");
+		}
+	};
+	bool removeElement(const T& element) {
+		for (size_t i = 0; i < counter; i++)
+		{
+			if (this->data[i] == element) {
+				std::swap(this->data[i], this->data[counter - 1]);
+
+				T* temp = new T[limit];
+				counter--;
+				for (int i = 0; i < counter; i++) {
+					temp[i] = this->data[i];
+				}
+				delete[] this->data;
+				this->data = temp;
+				temp = nullptr;
+
+				return true;
+			}
+		}
+		return false;
+	};
 	int getSize() { return counter; };
-	void removeAll();
-	bool isAssigned(T& element);
+	void removeAll() {
+		if (this->data != nullptr)
+			delete[] this->data;
+		counter = 0;
+		this->data = nullptr;
+	};
+	bool isAssigned(T& element) {
+		for (int i = 0; i < counter; i++) {
+			if (element == data[i])
+				return true;
+		}
+
+		return false;
+	};
 };
 

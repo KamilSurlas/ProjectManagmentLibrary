@@ -56,8 +56,8 @@ Task& Task::operator=(const Task& task) {
 		m_finishDate = task.m_finishDate;
 		m_creationDate = task.m_creationDate;
 
-		/*m_users = task.m_users;
-		m_leaders = task.m_leaders;*/
+		m_users = task.m_users;
+		m_leaders = task.m_leaders;
 	}
 	return *this;
 }

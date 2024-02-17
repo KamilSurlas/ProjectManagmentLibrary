@@ -170,7 +170,7 @@ void ProjectManager::removeManagerFromProject(Project& project, User& manager)
 }
 
 
-vector<User> ProjectManager::getAllParticipantsFromProject(Project& project)
+CustomAllocator<User>& ProjectManager::getAllParticipantsFromProject(Project& project)
 {
 	return project.getAllParticipants();
 }
