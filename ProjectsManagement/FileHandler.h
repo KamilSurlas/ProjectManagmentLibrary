@@ -11,8 +11,8 @@ using json = nlohmann::json;
 class FileHandler
 {
 public:
-	static std::string* createFileName();
-	static void saveFile(const std::vector<Task*>& data, std::string* fileName = createFileName());
-	static void saveCSVFile(ProjectManager& pm, std::string* fileName = createFileName());
+	//static std::string* createFileName();
+	//static void saveFile(const std::vector<Task*>& data, std::string* fileName = createFileName());
+	//static void saveCSVFile(ProjectManager& pm, std::string* fileName = createFileName());
 };
 

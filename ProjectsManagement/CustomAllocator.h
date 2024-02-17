@@ -39,7 +39,7 @@ public:
 	~CustomAllocator() {
 		if (this->data != nullptr) {
 			delete[] this->data;
-			this->data = 0;
+			this->data = nullptr;
 			counter = 0;
 		}
 
@@ -112,5 +112,44 @@ public:
 
 		return false;
 	};
+
+	CustomAllocator(const CustomAllocator& org) 
+		:counter(org.counter)
+	{
+		if (org.data != nullptr) {
+			T* temp = new T[org.limit];
+			this->limit = org.limit;
+			for (size_t i = 0; i < org.counter; i++)
+			{
+				this->data[i] = org.data[i];
+			}
+		}
+	}
+
+	CustomAllocator& operator=(const CustomAllocator& org) {
+		if (this != &org) {
+			if (this->data != nullptr) {
+				delete[] this->data;
+				this->data = nullptr;
+				counter = 0;
+			}
+
+			if (org.data != nullptr) {
+				this->data = new T[org.limit];
+				this->limit = org.limit;
+				for (size_t i = 0; i < org.counter; i++) {
+					this->data[i] = org.data[i];
+				}
+				this->counter = org.counter;
+			}
+			else {
+				this->data = nullptr;
+				this->limit = 0;
+				this->counter = 0;
+			}
+		}
+		return *this;
+	}
+
 };
 

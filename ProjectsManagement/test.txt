@@ -1,0 +1,5 @@
+Project name: Store application in .NET
+All participants:
+Tasks:
+
+

@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CustomAllocator.cpp" />
     <ClCompile Include="CustomException.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileHandler.cpp" />

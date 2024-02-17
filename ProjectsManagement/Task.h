@@ -21,7 +21,10 @@ public:
 	bool operator==(const Task& rhs);
 	bool operator!=(const Task& rhs);
 	Task& operator=(const Task& task);
+	Task& operator=(Task&& task) noexcept;
 	Task(const Task& task);
+	Task(Task&& task);
 	string toString();
+
 };
 

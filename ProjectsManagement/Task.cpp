@@ -50,19 +50,35 @@ bool Task::operator!=(const Task& rhs)
 
 Task& Task::operator=(const Task& task) {
 	if (this != &task) {
-		m_name = task.m_name;
+		/*m_name = task.m_name;
 		m_description = task.m_description;
 		m_startDate = task.m_startDate;
 		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
+		m_creationDate = task.m_creationDate;*/
 
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
+		this->setName(task.m_name);
+		//m_description = "task.m_name";
+		
+
+		//m_users = task.m_users;
+		//m_leaders = task.m_leaders;
 	}
 	return *this;
 }
 
+Task& Task::operator=(Task&& task) noexcept
+{
+	// TODO: insert return statement here
+	this->setName(task.m_name);
+	return *this;
+}
+
 Task::Task(const Task& task)
+{
+	Task::operator=(task);
+}
+
+Task::Task(Task&& task)
 {
 	Task::operator=(task);
 }

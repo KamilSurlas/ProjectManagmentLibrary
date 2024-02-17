@@ -1,16 +1,17 @@
 ﻿#include <iostream>
 
 #include "CustomAllocator.h"
-#include "CustomAllocator.cpp"
 #include "User.h"
 #include "ProjectManager.h"
+#include "FileHandler.h"
 
 int main()
 {
     ProjectManager* projectManager = ProjectManager::getInstance();
     
     Project storeApplication = projectManager->createProject("Store application in .NET", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
-    Task database = projectManager->assignTaskToProject("Prepare Databse structure", "Prepare database strcuture for store using Entity Framework Core", Date(1, 3, 2024, 00, 00), Date(30, 3, 2024, 00, 00),storeApplication);
+    Task database;
+    database = projectManager->assignTaskToProject("Prepare Databse structure", "Prepare database strcuture for store using Entity Framework Core", Date(1, 3, 2024, 00, 00), Date(30, 3, 2024, 00, 00),storeApplication);
     Task API = projectManager->assignTaskToProject("Prepare API", "Write an API for entities", Date(1, 4, 2024, 00, 00), Date(30, 4, 2024, 00, 00),storeApplication);
     Task basic = projectManager->assignTaskToProject("Write basic functionalities", "Create authorization and authentication mechanism", Date(1, 5, 2024, 00, 00), Date(30, 5, 2024, 00, 00),storeApplication);
     Task adv = projectManager->assignTaskToProject("Write advanced functionalities", "Create pay mechanism", Date(1, 6, 2024, 00, 00), Date(30, 6, 2024, 00, 00),storeApplication);
@@ -53,7 +54,7 @@ int main()
     projectManager->assignLeaderToTask(storeApplication, tests, programista3);
     projectManager->assignUserToTask(storeApplication, tests, programista4);
 
-
+   // FileHandler::saveCSVFile(*projectManager);
  
 }
 

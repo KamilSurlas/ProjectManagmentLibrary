@@ -25,6 +25,7 @@ public:
 	void setStartDate(Date startDate);
 	void setFinishDate(Date finishDate);
 	virtual ~TaskProject() {}
+	//virtual 
 	TaskProject() {}
 };
 
