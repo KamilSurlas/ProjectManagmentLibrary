@@ -14,8 +14,8 @@ private:
 	
 public:
 	Task() {}
-	void addUser(User& usr);
-	void removeUser(const User& usr);
+	void addUser(User& usr) override;
+	void removeUser(const User& usr) override;
 	void addLeader(User& ldr);
 	void removeLeader(const User& ldr);
 	bool operator==(const Task& rhs);

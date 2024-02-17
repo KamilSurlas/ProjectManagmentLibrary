@@ -15,8 +15,8 @@ private:
 	void addTask(Task& task);
 	void removeTask(Task& task);
 	void removeAllTasks();
-	void addUser(User& user);
-	void removeUser(User& user);
+	void addUser(User& user) override;
+	void removeUser(const User& usr) override;
 	void assignManager(User& manager);
 	void removeManager();
 	void assignUserToTask(Task& task, User& user);

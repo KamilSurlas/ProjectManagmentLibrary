@@ -12,7 +12,8 @@ protected:
 	Date m_creationDate = Date::getCurrentDate();
 	Date m_finishDate;
 	Date m_startDate;
-	
+	virtual void addUser(User& usr) = 0;
+	virtual void removeUser(const User& usr) = 0;
 public:
 	TaskProject(const std::string& name, const std::string& desc, Date startDate, Date finishDate);
 	string getName() { return m_name; }
