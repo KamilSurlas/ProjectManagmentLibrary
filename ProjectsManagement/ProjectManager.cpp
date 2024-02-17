@@ -1,4 +1,5 @@
 #include "ProjectManager.h"
+#include <iostream>
 
 ProjectManager* ProjectManager::m_projectManager = nullptr;
 
@@ -17,6 +18,7 @@ ProjectManager* ProjectManager::getInstance()
 Project& ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
+	//Project p(name, desc, projectStartDate, projectFinishDate);
 	m_projects.addElement(*p);
 	return *p;
 }
@@ -26,13 +28,13 @@ string ProjectManager::printProject(Project& project)
 }
 string ProjectManager::printProjects()
 {
-	string text;
+	string text = "";
 	for (int i = 0; i < m_projects.getSize(); i++)
 	{
 		text += m_projects[i].print() + "\n";
 	}
 
-	return text;
+	return text; 
 }
 
 void ProjectManager::changeFinishDate(Project& project, Date newDate)
@@ -85,13 +87,13 @@ CustomAllocator<Project>& ProjectManager::getProjects()
 
 void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 {
-	if (isTaskAssignedToProject(project,task))
+	//if (isTaskAssignedToProject(project,task))
 	{
 		project.assignUserToTask(task,user);
 	}
-	else
+	//else
 	{
-		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+		//throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
 }
 
@@ -109,13 +111,13 @@ void ProjectManager::removeUserFromTask(Project& project, Task& task, User& user
 
 void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& leader)
 {
-	if (isTaskAssignedToProject(project, task))
+	//if (isTaskAssignedToProject(project, task))
 	{
 		project.assignLeaderToTask(task, leader);
 	}
-	else
+	//else
 	{
-		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+		//throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
 }
 
@@ -215,7 +217,7 @@ void ProjectManager::assignTaskToProject(Project& project, Task& task)
 
 Task& ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
 {
-	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
+	Task *t = new Task(name, desc, taskStartDate, taskFinishDate);
 	project.addTask(*t);
 	return *t;
 }

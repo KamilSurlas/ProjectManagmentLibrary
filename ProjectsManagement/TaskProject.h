@@ -16,7 +16,7 @@ protected:
 	void setName(std::string name) { m_name = name; }
 	void setDescription(std::string desc) { m_description = desc; }
 public:
-	TaskProject(const std::string& name, const std::string& desc, Date startDate, Date finishDate);
+	TaskProject(const std::string name, const std::string desc, Date startDate, Date finishDate);
 	string getName()  const { return m_name; }
 	string getDescritpion()const { return m_description; }
 	Date getStartDate()const { return m_creationDate; }

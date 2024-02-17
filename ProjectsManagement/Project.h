@@ -33,5 +33,8 @@ public:
 	bool operator==(const Project& project);
 	bool operator!=(const Project& project);
 	CustomAllocator<User>& getAllParticipants();
+	Project& operator=(Project&& project) noexcept;
+	Project(const Project& project) {};
+	Project(Project&& project) noexcept;
 };
 

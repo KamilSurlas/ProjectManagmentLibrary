@@ -1,6 +1,6 @@
 #include "Task.h"
 
-Task::Task(const std::string& name, const std::string& desc, Date startDate, Date finishDate)
+Task::Task(const std::string name, const std::string desc, Date startDate, Date finishDate)
 	:TaskProject(name,desc,startDate,finishDate)
 {}
 
@@ -37,7 +37,8 @@ bool Task::operator==(const Task& rhs)
 {
 	if (this != &rhs)
 	{
-		return compareFields(rhs);
+		//return compareFields(rhs);
+		return false;
 	}
 	return true;
 }
@@ -48,39 +49,65 @@ bool Task::operator!=(const Task& rhs)
 }
 
 
-Task& Task::operator=(const Task& task) {
+Task& Task::operator=(const Task& task) 
+{
 	if (this != &task) {
-		/*m_name = task.m_name;
+		m_name = task.m_name;
 		m_description = task.m_description;
 		m_startDate = task.m_startDate;
 		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;*/
+		m_creationDate = task.m_creationDate;
 
-		this->setName(task.m_name);
-		//m_description = "task.m_name";
-		
-
-		//m_users = task.m_users;
-		//m_leaders = task.m_leaders;
+		m_users = task.m_users;
+		m_leaders = task.m_leaders;
 	}
 	return *this;
 }
 
 Task& Task::operator=(Task&& task) noexcept
+
 {
-	// TODO: insert return statement here
-	this->setName(task.m_name);
+	if (this != &task) {
+		m_name = task.m_name;
+		m_description = task.m_description;
+		m_startDate = task.m_startDate;
+		m_finishDate = task.m_finishDate;
+		m_creationDate = task.m_creationDate;
+
+		m_users = task.m_users;
+		m_leaders = task.m_leaders;
+	}
 	return *this;
 }
 
 Task::Task(const Task& task)
 {
-	Task::operator=(task);
+	if (this != &task) {
+		m_name = task.m_name;
+		m_description = task.m_description;
+		m_startDate = task.m_startDate;
+		m_finishDate = task.m_finishDate;
+		m_creationDate = task.m_creationDate;
+
+
+
+		m_users = task.m_users;
+		m_leaders = task.m_leaders;
+	}
 }
 
-Task::Task(Task&& task)
+Task::Task(Task&& task) noexcept
 {
-	Task::operator=(task);
+	if (this != &task) {
+		m_name = task.m_name;
+		m_description = task.m_description;
+		m_startDate = task.m_startDate;
+		m_finishDate = task.m_finishDate;
+		m_creationDate = task.m_creationDate;
+
+		m_users = task.m_users;
+		m_leaders = task.m_leaders;
+	}
 }
 
 string Task::toString()

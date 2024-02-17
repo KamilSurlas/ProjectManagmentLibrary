@@ -9,10 +9,11 @@ private:
 	CustomAllocator<User> m_leaders;
 	friend class ProjectManager;
 private:
-	Task(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate);
+	
 	bool compareFields(const Task& task);
 	
 public:
+	Task(const std::string name, const std::string desc, Date taskStartDate, Date taskFinishDate);
 	Task() {}
 	void addUser(User& usr) override;
 	void removeUser(const User& usr) override;
@@ -23,7 +24,7 @@ public:
 	Task& operator=(const Task& task);
 	Task& operator=(Task&& task) noexcept;
 	Task(const Task& task);
-	Task(Task&& task);
+	Task(Task&& task) noexcept;
 	string toString();
 
 };

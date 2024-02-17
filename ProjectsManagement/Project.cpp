@@ -8,11 +8,13 @@ Project::Project(const std::string& name, const std::string& desc, Date projectS
 
 }
 
+
+
 void Project::addTask(Task& task)
 {
 	if (m_finishDate < task.getFinishDate() || m_creationDate > task.getCreationDate())
 	{
-		throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
+		//throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
 	}
 	m_tasks.addElement(task);
 }
@@ -117,6 +119,36 @@ CustomAllocator<User>& Project::getAllParticipants()
 	}
 
 	return participants;
+}
+
+Project& Project::operator=(Project&& project) noexcept
+{
+	// TODO: insert return statement here
+	if (this != &project) {
+		m_name = project.m_name;
+		m_description = project.m_description;
+		m_startDate = project.m_startDate;
+		m_finishDate = project.m_finishDate;
+		m_creationDate = project.m_creationDate;
+
+		m_users = project.m_users;
+		m_tasks = project.m_tasks;
+	}
+	return *this;
+}
+
+Project::Project(Project&& project) noexcept
+{
+	if (this != &project) {
+		m_name = project.m_name;
+		m_description = project.m_description;
+		m_startDate = project.m_startDate;
+		m_finishDate = project.m_finishDate;
+		m_creationDate = project.m_creationDate;
+
+		m_users = project.m_users;
+		m_tasks = project.m_tasks;
+	}
 }
 
 Project& Project::operator=(const Project& project)

@@ -38,6 +38,9 @@ public:
 	};
 	~CustomAllocator() {
 		if (this->data != nullptr) {
+			/*for (int i = 0; i < counter; i++) {
+				delete this->data[i];
+			}*/
 			delete[] this->data;
 			this->data = nullptr;
 			counter = 0;
@@ -59,15 +62,15 @@ public:
 		return !(*this == rhs);
 	};
 	void addElement(T& element) {
-		if (isAssigned(element))
-			throw std::invalid_argument("Element is assigned to collection");
-		else {
+		//if (isAssigned(element))
+			//throw std::invalid_argument("Element is assigned to collection");
+		//else {
 			this->data[counter] = element;
 			counter++;
 
 			if (counter >= sizeLimit)
 				realloc(sizeLimit + 100);
-		}
+		//}
 	};
 	T& operator[](int idx) {
 		if (0 <= idx && idx < counter) {
