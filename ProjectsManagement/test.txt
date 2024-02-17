@@ -17,30 +17,30 @@ Bartosz Nowak
 bartosznowak@wp.pl
 
 Tasks:
-Name: Prepare Databse structureCreation date: 2024-02-17 23:05
+Name: Prepare Databse structureCreation date: 2024-02-17 23:15
 Start task date: 2024-03-01 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Prepare Databse structure
 Leaders:
-Participants:
 Michal Wilkosz
 
 michalwilkosz1234@wp.pl
 
+Participants:
 Kamil Surlas
 
 kamilsurlas1234@wp.pl
 
-Name: Prepare APICreation date: 2024-02-17 23:05
+Name: Prepare APICreation date: 2024-02-17 23:15
 Start task date: 2024-04-01 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Prepare API
 Leaders:
-Participants:
 Michal Wilkosz
 
 michalwilkosz1234@wp.pl
 
+Participants:
 Kamil Surlas
 
 kamilsurlas1234@wp.pl
@@ -49,16 +49,16 @@ Marcin Kowalski
 
 marcinkowalski@wp.pl
 
-Name: Write basic functionalitiesCreation date: 2024-02-17 23:05
+Name: Write basic functionalitiesCreation date: 2024-02-17 23:15
 Start task date: 2024-05-01 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Write basic functionalities
 Leaders:
-Participants:
 Michal Wilkosz
 
 michalwilkosz1234@wp.pl
 
+Participants:
 Marcin Kowalski
 
 marcinkowalski@wp.pl
@@ -67,16 +67,16 @@ Bartosz Nowak
 
 bartosznowak@wp.pl
 
-Name: Write advanced functionalitiesCreation date: 2024-02-17 23:05
+Name: Write advanced functionalitiesCreation date: 2024-02-17 23:15
 Start task date: 2024-06-01 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Write advanced functionalities
 Leaders:
-Participants:
 Michal Wilkosz
 
 michalwilkosz1234@wp.pl
 
+Participants:
 Kamil Surlas
 
 kamilsurlas1234@wp.pl
@@ -89,30 +89,30 @@ Bartosz Nowak
 
 bartosznowak@wp.pl
 
-Name: Make nice looking GUICreation date: 2024-02-17 23:05
+Name: Make nice looking GUICreation date: 2024-02-17 23:15
 Start task date: 2024-07-01 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Make nice looking GUI
 Leaders:
-Participants:
 Kamil Surlas
 
 kamilsurlas1234@wp.pl
 
+Participants:
 Bartosz Nowak
 
 bartosznowak@wp.pl
 
-Name: Test applicationCreation date: 2024-02-17 23:05
+Name: Test applicationCreation date: 2024-02-17 23:15
 Start task date: 2024-07-15 00:00
-Finish task date: 2024-02-17 23:05
+Finish task date: 2024-02-17 23:15
 Name: Test application
 Leaders:
-Participants:
 Marcin Kowalski
 
 marcinkowalski@wp.pl
 
+Participants:
 Bartosz Nowak
 
 bartosznowak@wp.pl

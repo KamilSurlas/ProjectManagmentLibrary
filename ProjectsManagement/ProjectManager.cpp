@@ -85,17 +85,7 @@ CustomAllocator<Project>& ProjectManager::getProjects()
 	return m_projects;
 }
 
-void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
-{
-	//if (isTaskAssignedToProject(project,task))
-	{
-		project.assignUserToTask(task,user);
-	}
-	//else
-	{
-		//throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
-	}
-}
+
 
 void ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
 {
@@ -108,16 +98,26 @@ void ProjectManager::removeUserFromTask(Project& project, Task& task, User& user
 		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
 }
-
+void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
+{
+	if (isTaskAssignedToProject(project,task))
+	{
+		project.assignUserToTask(task, user);
+	}
+	else
+	{
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
+}
 void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& leader)
 {
-	//if (isTaskAssignedToProject(project, task))
+	if (isTaskAssignedToProject(project, task))
 	{
 		project.assignLeaderToTask(task, leader);
 	}
-	//else
+	else
 	{
-		//throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
 }
 

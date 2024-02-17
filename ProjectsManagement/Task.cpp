@@ -25,12 +25,12 @@ void Task::removeUser(const User& usr)
 
 void Task::addLeader(User& ldr)
 {
-	m_users.addElement(&ldr);
+	m_leaders.addElement(&ldr);
 }
 
 void Task::removeLeader(const User& ldr)
 {
-	m_users.removeElement(ldr);
+	m_leaders.removeElement(ldr);
 }
 
 bool Task::operator==(const Task& rhs)
