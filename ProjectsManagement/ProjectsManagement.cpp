@@ -32,6 +32,28 @@ int main()
     projectManager->assignUserToProject(storeApplication, programista4);
 
     projectManager->assignLeaderToTask(storeApplication, database, programista1);
+    projectManager->assignUserToTask(storeApplication, database, programista2);
+
+    projectManager->assignLeaderToTask(storeApplication, API, programista1);
+    projectManager->assignUserToTask(storeApplication, API, programista2);
+    projectManager->assignUserToTask(storeApplication, API, programista3);
+
+    projectManager->assignLeaderToTask(storeApplication, basic, programista1);
+    projectManager->assignUserToTask(storeApplication, basic, programista3);
+    projectManager->assignUserToTask(storeApplication, basic, programista4);
+
+    projectManager->assignLeaderToTask(storeApplication, adv, programista1);
+    projectManager->assignUserToTask(storeApplication, adv, programista2);
+    projectManager->assignUserToTask(storeApplication, adv, programista3);
+    projectManager->assignUserToTask(storeApplication, adv, programista4);
     
+    projectManager->assignLeaderToTask(storeApplication, GUI, programista2);
+    projectManager->assignUserToTask(storeApplication, GUI, programista4);
+
+    projectManager->assignLeaderToTask(storeApplication, tests, programista3);
+    projectManager->assignUserToTask(storeApplication, tests, programista4);
+
+
+ 
 }
 
