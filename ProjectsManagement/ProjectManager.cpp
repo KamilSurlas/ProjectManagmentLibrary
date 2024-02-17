@@ -5,7 +5,7 @@ ProjectManager* ProjectManager::m_projectManager = nullptr;
 
 bool ProjectManager::isTaskAssignedToProject(Project& project, Task& task)
 {
-	return project.m_tasks.isAssigned(task);
+	return project.m_tasks.isAssigned(&task);
 }
 
 ProjectManager* ProjectManager::getInstance()
@@ -15,12 +15,12 @@ ProjectManager* ProjectManager::getInstance()
 
 	return m_projectManager;
 }
-Project& ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
+Project* ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
 	m_projects.addElement(p);
 	cerr << "Address of project in method: " << (void*)p << endl;
-	return *p;
+	return p;
 }
 string ProjectManager::printProject(Project& project)
 {
@@ -215,9 +215,9 @@ void ProjectManager::assignTaskToProject(Project& project, Task& task)
 	project.addTask(task);
 }
 
-Task& ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
+Task* ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
 {
 	Task *t = new Task(name, desc, taskStartDate, taskFinishDate);
 	project.addTask(*t);
-	return *t;
+	return t;
 }

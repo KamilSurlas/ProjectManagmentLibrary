@@ -56,7 +56,7 @@ void Project::removeManager()
 
 void Project::assignUserToTask(Task& task, User& user)
 {
-	if (m_users.isAssigned(user))
+	if (m_users.isAssigned(&user))
 		task.addUser(user);
 	else
 		throw invalid_user("User is not assigned to project");

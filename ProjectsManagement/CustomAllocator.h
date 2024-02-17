@@ -68,15 +68,15 @@ public:
 		return !(*this == rhs);
 	};
 	void addElement(T* element) {
-		//if (isAssigned(element))
-			//throw std::invalid_argument("Element is assigned to collection");
-		//else {
+		if (isAssigned(element))
+			throw std::invalid_argument("Element is assigned to collection");
+		else {
 			this->data[counter] = element;
 			counter++;
 
 			if (counter >= sizeLimit)
 				realloc(sizeLimit + 100);
-		//}
+		}
 	};
 	T* operator[](int idx) {
 		if (0 <= idx && idx < counter) {
@@ -124,9 +124,9 @@ public:
 		counter = 0;
 		this->data = nullptr;
 	};
-	bool isAssigned(T& element) {
+	bool isAssigned(T* element) {
 		for (int i = 0; i < counter; i++) {
-			if (*(this->data[i]) == element)
+			if (this->data[i] == element)
 				return true;
 		}
 

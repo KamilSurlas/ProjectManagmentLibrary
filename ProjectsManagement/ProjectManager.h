@@ -32,8 +32,8 @@ public:
 	void assignManagerToProject(Project& project, User& manager) override;
 	void removeManagerFromProject(Project& project, User& manager) override;
 	void assignTaskToProject(Project& project, Task& task) override;
-	Task& assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) override;
-	Project& createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) override;
+	Task* assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) override;
+	Project* createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) override;
 	string printProject(Project& project) override;
 	string printProjects() override;
 	void changeFinishDate(Project& project, Date newDate) override;

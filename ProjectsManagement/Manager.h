@@ -22,8 +22,8 @@ protected:
 	virtual void assignManagerToProject(Project& project, User& manager) =0;
 	virtual void removeManagerFromProject(Project& project, User& manager)=0;
 	virtual void assignTaskToProject(Project& project, Task& task) = 0;
-	virtual Task& assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) = 0;
-	virtual Project& createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) = 0;
+	virtual Task* assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) = 0;
+	virtual Project* createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) = 0;
 	virtual bool isTaskAssignedToProject(Project& project, Task& task) = 0;
 	virtual void changeFinishDate(Project& project, Date newDate) = 0;
 	virtual void changeStartDate(Project& project, Date newDate) = 0;
