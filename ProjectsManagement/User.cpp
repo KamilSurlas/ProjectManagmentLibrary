@@ -45,6 +45,11 @@ void User::setPhoneNumber(const string& newPhoneNumber)
 
 
 
+string User::toString()
+{
+	return getName() + " " + getSurname() + "\n" + this->getUsername() + "\n" + this->getMail() + "\n" + this->getPhoneNumber();
+}
+
 bool User::operator==(const User& user)
 {
 	if (this != &user)

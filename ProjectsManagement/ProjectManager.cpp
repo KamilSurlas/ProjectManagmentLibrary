@@ -78,6 +78,11 @@ ProjectManager::~ProjectManager()
 	}
 }
 
+CustomAllocator<Project>& ProjectManager::getProjects()
+{
+	return m_projects;
+}
+
 void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 {
 	if (isTaskAssignedToProject(project,task))

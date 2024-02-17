@@ -89,20 +89,34 @@ void Project::changeTaskFinishDate(Task& task, Date newDate)
 	task.setFinishDate(newDate);
 }
 
-
-vector<User> Project::getAllParticipants()
+string Project::print(char ch)
 {
-	vector<User> participants;
+	string formattedText;
+	
+	formattedText += "Project name: " + this->m_name + "\n";
+	formattedText += "All participants:\n";
+	for (int i = 0; i < this->m_users.getSize(); i++) {
+		formattedText += m_users[i].toString() + "\n";
+	}
+
+	formattedText += "Tasks:\n";
+	for (size_t i = 0; i < this->m_tasks.getSize(); i++)
+	{
+		formattedText += m_tasks[i].toString();
+	}
+
+	return formattedText;
+}
+
+
+CustomAllocator<User>& Project::getAllParticipants()
+{
+	CustomAllocator<User> participants;
 	for (int i = 0; i < m_users.getSize(); i++) {
-		participants.push_back(m_users[i]);
+		participants.addElement(m_users[i]);
 	}
 
 	return participants;
-}
-
-string Project::print()
-{
-	return string();
 }
 
 Project& Project::operator=(const Project& project)

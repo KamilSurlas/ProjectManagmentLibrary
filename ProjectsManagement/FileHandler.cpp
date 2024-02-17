@@ -40,3 +40,22 @@ void FileHandler::saveFile(const std::vector<Task*>& data, std::string* fileName
 
 	delete fileName;
 }
+
+void FileHandler::saveCSVFile(ProjectManager& pm, std::string* fileName)
+{
+	string xd = pm.printProjects();
+	std::ofstream plik("test.txt");
+
+	if (plik.is_open()) {
+		// Zapisz zmodyfikowany tekst do pliku CSV
+		plik << xd << std::endl;
+
+		// Zamknij plik
+		plik.close();
+
+		std::cout << "Dane zapisane do pliku: " << "test.txt" << std::endl;
+	}
+	else {
+		std::cerr << "B³¹d podczas otwierania pliku do zapisu." << std::endl;
+	}
+}

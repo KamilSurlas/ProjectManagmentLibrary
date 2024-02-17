@@ -22,5 +22,6 @@ public:
 	bool operator!=(const Task& rhs);
 	Task& operator=(const Task& task);
 	Task(const Task& task);
+	string toString();
 };
 

@@ -41,5 +41,6 @@ public:
 	void changeFinishDate(Project& project, Task& task, Date newDate) override;
 	void changeStartDate(Project& project, Task& task, Date newDate) override;
 	~ProjectManager();
+	CustomAllocator<Project>& getProjects() override;
 };
 
