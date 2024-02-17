@@ -18,8 +18,8 @@ ProjectManager* ProjectManager::getInstance()
 Project& ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
-	//Project p(name, desc, projectStartDate, projectFinishDate);
 	m_projects.addElement(*p);
+	cerr << "Address of project in method: " << (void*)p << endl;
 	return *p;
 }
 string ProjectManager::printProject(Project& project)

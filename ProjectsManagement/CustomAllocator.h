@@ -5,7 +5,7 @@ template<typename T, size_t sizeLimit = 100>
 class CustomAllocator
 {
 private:
-	T* data = nullptr;
+	T** data = nullptr;
 	int counter;
 	int limit;
 	void realloc(int newLimit) {
@@ -13,7 +13,7 @@ private:
 			throw std::invalid_argument("Wrong argument");
 		}
 
-		T* temp = new T[newLimit];
+		T** temp = new T*[newLimit];
 
 		if (temp == nullptr) {
 			throw std::bad_alloc();
@@ -33,7 +33,7 @@ public:
 		if (sizeLimit <= 0)
 			throw std::invalid_argument("Size limit cannot be less or equal 0");
 		limit = sizeLimit;
-		this->data = new T[limit];
+		this->data = new T*[limit];
 		counter = 0;
 	};
 	~CustomAllocator() {
@@ -65,7 +65,7 @@ public:
 		//if (isAssigned(element))
 			//throw std::invalid_argument("Element is assigned to collection");
 		//else {
-			this->data[counter] = element;
+			this->data[counter] = &element;
 			counter++;
 
 			if (counter >= sizeLimit)
@@ -74,7 +74,7 @@ public:
 	};
 	T& operator[](int idx) {
 		if (0 <= idx && idx < counter) {
-			return this->data[idx];
+			return *(this->data[idx]);
 		}
 		else {
 			throw std::out_of_range("Provided index is out of range");
@@ -83,10 +83,10 @@ public:
 	bool removeElement(const T& element) {
 		for (size_t i = 0; i < counter; i++)
 		{
-			if (this->data[i] == element) {
+			if (*(this->data[i]) == element) {
 				std::swap(this->data[i], this->data[counter - 1]);
 
-				T* temp = new T[limit];
+				T** temp = new T*[limit];
 				counter--;
 				for (int i = 0; i < counter; i++) {
 					temp[i] = this->data[i];
@@ -109,7 +109,7 @@ public:
 	};
 	bool isAssigned(T& element) {
 		for (int i = 0; i < counter; i++) {
-			if (element == data[i])
+			if (*(this->data[i]) == element)
 				return true;
 		}
 
@@ -138,7 +138,7 @@ public:
 			}
 
 			if (org.data != nullptr) {
-				this->data = new T[org.limit];
+				this->data = new T*[org.limit];
 				this->limit = org.limit;
 				for (size_t i = 0; i < org.counter; i++) {
 					this->data[i] = org.data[i];

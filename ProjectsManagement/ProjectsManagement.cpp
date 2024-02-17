@@ -12,14 +12,13 @@ int main()
 
     ProjectManager* projectManager = ProjectManager::getInstance();
     Project storeApplication = projectManager->createProject("Store application in .NET", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
-    Task database("Prepare Databse structure", "Prepare database strcuture for store using Entity Framework Core", Date(1, 3, 2024, 00, 00), Date(30, 3, 2024, 00, 00));
-        projectManager->assignTaskToProject(storeApplication,database);
+    Task database = projectManager->assignTaskToProject("Prepare Databse structure", "Prepare database strcuture for store using Entity Framework Core", Date(1, 3, 2024, 00, 00), Date(30, 3, 2024, 00, 00),storeApplication);
     Task API = projectManager->assignTaskToProject("Prepare API", "Write an API for entities", Date(1, 4, 2024, 00, 00), Date(30, 4, 2024, 00, 00), storeApplication);
     Task basic = projectManager->assignTaskToProject("Write basic functionalities", "Create authorization and authentication mechanism", Date(1, 5, 2024, 00, 00), Date(30, 5, 2024, 00, 00), storeApplication);
     Task adv = projectManager->assignTaskToProject("Write advanced functionalities", "Create pay mechanism", Date(1, 6, 2024, 00, 00), Date(30, 6, 2024, 00, 00),storeApplication);
     Task GUI = projectManager->assignTaskToProject("Make nice looking GUI", "Create GUI", Date(1, 7, 2024, 00, 00), Date(15, 7, 2024, 00, 00), storeApplication);
     Task tests = projectManager->assignTaskToProject("Test application", "Write tests for application", Date(15, 7, 2024, 00, 00), Date(30, 7, 2024, 00, 00),storeApplication);
-
+    cerr << "Address of storeApplication: " << (void*)&storeApplication;
     User programista1("Michal", "Wilkosz", "michalwilkosz1234@wp.pl", "michwil");
     User programista2("Kamil", "Surlas", "kamilsurlas1234@wp.pl", "kamsur");
     User programista3("Marcin", "Kowalski", "marcinkowalski@wp.pl", "markow");
