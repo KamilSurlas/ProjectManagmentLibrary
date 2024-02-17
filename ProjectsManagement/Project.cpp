@@ -16,7 +16,7 @@ void Project::addTask(Task& task)
 	{
 		//throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
 	}
-	m_tasks.addElement(task);
+	m_tasks.addElement(&task);
 }
 void Project::removeTask(Task& task)
 {
@@ -30,7 +30,7 @@ void Project::removeAllTasks()
 
 void Project::addUser(User& user)
 {
-	m_users.addElement(user);
+	m_users.addElement(&user);
 }
 
 void Project::removeUser(const User& usr)
@@ -98,13 +98,13 @@ string Project::print(char ch)
 	formattedText += "Project name: " + this->m_name + "\n";
 	formattedText += "All participants:\n";
 	for (int i = 0; i < this->m_users.getSize(); i++) {
-		formattedText += m_users[i].toString() + "\n";
+		formattedText += m_users[i]->toString() + "\n";
 	}
 
 	formattedText += "Tasks:\n";
 	for (size_t i = 0; i < this->m_tasks.getSize(); i++)
 	{
-		formattedText += m_tasks[i].toString();
+		formattedText += m_tasks[i]->toString();
 	}
 
 	return formattedText;

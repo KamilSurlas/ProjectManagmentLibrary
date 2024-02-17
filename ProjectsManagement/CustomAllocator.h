@@ -67,20 +67,20 @@ public:
 	bool operator!=(const CustomAllocator& rhs) {
 		return !(*this == rhs);
 	};
-	void addElement(T& element) {
+	void addElement(T* element) {
 		//if (isAssigned(element))
 			//throw std::invalid_argument("Element is assigned to collection");
 		//else {
-			this->data[counter] = &element;
+			this->data[counter] = element;
 			counter++;
 
 			if (counter >= sizeLimit)
 				realloc(sizeLimit + 100);
 		//}
 	};
-	T& operator[](int idx) {
+	T* operator[](int idx) {
 		if (0 <= idx && idx < counter) {
-			return *(this->data[idx]);
+			return this->data[idx];
 		}
 		else {
 			throw std::out_of_range("Provided index is out of range");

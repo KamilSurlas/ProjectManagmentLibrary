@@ -55,7 +55,7 @@ int main()
     projectManager->assignLeaderToTask(storeApplication, tests, programista3);
     projectManager->assignUserToTask(storeApplication, tests, programista4);
 
-    //cout << projectManager->printProject(storeApplication);
+    cout << projectManager->printProjects();
 
     FileHandler::saveCSVFile();
  

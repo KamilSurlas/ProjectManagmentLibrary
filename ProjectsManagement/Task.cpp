@@ -15,7 +15,7 @@ bool Task::compareFields(const Task & task)
 
 void Task::addUser(User & usr)
 {
-	m_users.addElement(usr);
+	m_users.addElement(&usr);
 }
 
 void Task::removeUser(const User& usr)
@@ -25,7 +25,7 @@ void Task::removeUser(const User& usr)
 
 void Task::addLeader(User& ldr)
 {
-	m_users.addElement(ldr);
+	m_users.addElement(&ldr);
 }
 
 void Task::removeLeader(const User& ldr)
@@ -120,13 +120,13 @@ string Task::toString()
 	formattedText += "Name: " + this->m_name + "\n";
 	formattedText += "Leaders:\n";
 	for (int i = 0; i < m_leaders.getSize(); i++) {
-		formattedText += m_leaders[i].toString() + "\n";
+		formattedText += m_leaders[i]->toString() + "\n";
 	}
 
 	formattedText += "Participants:\n";
 	for (size_t i = 0; i < m_users.getSize(); i++)
 	{
-		formattedText += m_users[i].toString() + "\n";
+		formattedText += m_users[i]->toString() + "\n";
 	}
 
 	return formattedText;
