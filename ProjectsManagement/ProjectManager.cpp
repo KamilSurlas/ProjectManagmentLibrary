@@ -14,7 +14,7 @@ ProjectManager* ProjectManager::getInstance()
 
 	return m_projectManager;
 }
-Project& ProjectManager::create(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
+Project& ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
 	m_projects.addElement(*p);
@@ -66,6 +66,15 @@ void ProjectManager::changeStartDate(Project& project, Task& task, Date newDate)
 	else
 	{
 		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
+	}
+}
+
+ProjectManager::~ProjectManager()
+{
+	if (m_projectManager != nullptr)
+	{
+		delete m_projectManager;
+		m_projectManager = nullptr;
 	}
 }
 
@@ -155,11 +164,7 @@ void ProjectManager::removeManagerFromProject(Project& project, User& manager)
 	project.removeManager();
 }
 
-void ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
-{
-	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
-	project.addTask(*t);
-}
+
 vector<User> ProjectManager::getAllParticipantsFromProject(Project& project)
 {
 	return project.getAllParticipants();
@@ -201,4 +206,11 @@ void ProjectManager::editTaskDescription(Project& project, Task& task, string de
 void ProjectManager::assignTaskToProject(Project& project, Task& task)
 {
 	project.addTask(task);
+}
+
+Task& ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
+{
+	Task* t = new Task(name, desc, taskStartDate, taskFinishDate);
+	project.addTask(*t);
+	return *t;
 }

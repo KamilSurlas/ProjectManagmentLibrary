@@ -3,65 +3,35 @@
 #include "CustomAllocator.h"
 #include "CustomAllocator.cpp"
 #include "User.h"
+#include "ProjectManager.h"
 
 int main()
 {
-
-    //TaskManager* t = TaskManager::getInstance();
-
-    CustomAllocator<int, 5> allocator;
-
-    // Dodajemy kilka elementów
-    for (int i = 0; i < 5; ++i) {
-        allocator.addElement(i);
-    }
-
-     //Wyświetlamy elementy za pomocą operatora indeksowania
-    std::cout << "Elements in Allocator: ";
-    for (int i = 0; i < 5; ++i) {
-        std::cout << allocator[i] << " ";
-    }
-    std::cout << std::endl;
-
-     //Testujemy usuwanie elementu
-    int elementToRemove = 3;
-    if (allocator.removeElement(elementToRemove)) {
-        std::cout << "Element " << elementToRemove << " removed successfully." << std::endl;
-    }
-    else {
-        std::cout << "Element " << elementToRemove << " not found." << std::endl;
-    }
-
-    // Wyświetlamy aktualne elementy
-    std::cout << "Elements in Allocator after removal: ";
-    for (int i = 0; i < 4; ++i) {
-        std::cout << allocator[i] << " ";
-    }
-    std::cout << std::endl;
-
-    CustomAllocator<User> allocator2;
-
-    User u1("m", "w", "xdd@wp.pl", "koks");
-    User u2("xd", "xd", "xdd2@wp.pl", "koks");
-    try {
-        allocator2.addElement(u1);
-        allocator2.addElement(u1);
-    }
-    catch (std::invalid_argument s) {
-        std::cout << s.what();
-    }
-    allocator2.addElement(u2);
-
+    ProjectManager* projectManager = ProjectManager::getInstance();
     
-    /*for (int i = 0; i < 3; ++i) {
-        std::cout << &allocator2[i] << "\n";
-    }
+    Project storeApplication = projectManager->createProject("Store application in .NET", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
+    Task database = projectManager->assignTaskToProject("Prepare Databse structure", "Prepare database strcuture for store using Entity Framework Core", Date(1, 3, 2024, 00, 00), Date(30, 3, 2024, 00, 00),storeApplication);
+    Task API = projectManager->assignTaskToProject("Prepare API", "Write an API for entities", Date(1, 4, 2024, 00, 00), Date(30, 4, 2024, 00, 00),storeApplication);
+    Task basic = projectManager->assignTaskToProject("Write basic functionalities", "Create authorization and authentication mechanism", Date(1, 5, 2024, 00, 00), Date(30, 5, 2024, 00, 00),storeApplication);
+    Task adv = projectManager->assignTaskToProject("Write advanced functionalities", "Create pay mechanism", Date(1, 6, 2024, 00, 00), Date(30, 6, 2024, 00, 00),storeApplication);
+    Task GUI = projectManager->assignTaskToProject("Make nice looking GUI", "Create GUI", Date(1, 7, 2024, 00, 00), Date(15, 7, 2024, 00, 00),storeApplication);
+    Task tests = projectManager->assignTaskToProject("Test application", "Write tests for application", Date(15, 7, 2024, 00, 00), Date(30, 7, 2024, 00, 00),storeApplication);
 
-    allocator2.removeElement(u2);
-    std::cout << "\nDDDDDD:\n";
-    for (int i = 0; i < 2; ++i) {
-        std::cout << &allocator2[i] << "\n";
-    }*/
+    User programista1("Michal", "Wilkosz", "michalwilkosz1234@wp.pl", "michwil");
+    User programista2("Kamil", "Surlas", "kamilsurlas1234@wp.pl", "kamsur");
+    User programista3("Marcin", "Kowalski", "marcinkowalski@wp.pl", "markow");
+    User programista4("Bartosz", "Nowak", "bartosznowak@wp.pl", "barnow");
 
+    User kierownik1("Michal", "Kowalski", "michalkowalski@wp.pl", "michkow");
+    User kierownik2("Szymon", "Dziendzielowski", "szymondziendzielowski@wp.pl", "szydzi");
+
+    projectManager->assignManagerToProject(storeApplication,kierownik1);
+    projectManager->assignUserToProject(storeApplication, programista1);
+    projectManager->assignUserToProject(storeApplication, programista2);
+    projectManager->assignUserToProject(storeApplication, programista3);
+    projectManager->assignUserToProject(storeApplication, programista4);
+
+    projectManager->assignLeaderToTask(storeApplication, database, programista1);
+    
 }
 

@@ -114,8 +114,8 @@ Project& Project::operator=(const Project& project)
 		m_finishDate = project.m_finishDate;
 		m_creationDate = project.m_creationDate;
 
-		/*m_users = task.m_users;
-		m_leaders = task.m_leaders;*/
+		m_users = project.m_users;
+		m_tasks = project.m_tasks;
 	}
 	return *this;
 }
