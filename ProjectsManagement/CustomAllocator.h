@@ -12,10 +12,6 @@ private:
 public:
 	CustomAllocator();
 	~CustomAllocator();
-	CustomAllocator(const CustomAllocator&) = delete;
-	CustomAllocator(CustomAllocator&&) = delete;
-	CustomAllocator& operator=(const CustomAllocator&) = delete;
-	CustomAllocator& operator=(CustomAllocator&&) = delete;
 	bool operator==(const CustomAllocator&);
 	bool operator!=(const CustomAllocator&);
 	void addElement(T& element);

@@ -25,12 +25,12 @@ private:
 	void removeLeaderFromTask(Task& task, User& leader);
 	void changeTaskStartDate(Task& task, Date newDate);
 	void changeTaskFinishDate(Task& task, Date newDate);
-	vector<User> getAllParticipants();
 public:
-	string print();
+	string print(char ch = '\n');
 	Project() {}
 	Project& operator=(const Project& project);
 	bool operator==(const Project& project);
 	bool operator!=(const Project& project);
+	CustomAllocator<User>& getAllParticipants();
 };
 

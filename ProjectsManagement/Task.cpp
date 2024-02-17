@@ -67,5 +67,27 @@ Task::Task(const Task& task)
 	Task::operator=(task);
 }
 
+string Task::toString()
+{
+	string formattedText;
+	formattedText += "Name: " + this->m_name;
+	formattedText += "Creation date: " + this->m_creationDate.getDateTimeAsString() + "\n";
+	formattedText += "Start task date: " + this->m_startDate.getDateTimeAsString() + "\n";
+	formattedText += "Finish task date: " + this->m_creationDate.getDateTimeAsString() + "\n";
+	formattedText += "Name: " + this->m_name + "\n";
+	formattedText += "Leaders:\n";
+	for (int i = 0; i < m_leaders.getSize(); i++) {
+		formattedText += m_leaders[i].toString() + "\n";
+	}
+
+	formattedText += "Participants:\n";
+	for (size_t i = 0; i < m_users.getSize(); i++)
+	{
+		formattedText += m_users[i].toString() + "\n";
+	}
+
+	return formattedText;
+}
+
 
 
