@@ -22,7 +22,11 @@ private:
 		for (int i = 0; i < sizeLimit; i++) {
 			temp[i] = this->data[i];
 		}
-
+		for (size_t i = 0; i < counter; i++)
+		{
+			delete data[i];
+			data[i] = nullptr;
+		}
 		delete[] this->data;
 		this->data = temp;
 		temp = nullptr;
@@ -38,9 +42,11 @@ public:
 	};
 	~CustomAllocator() {
 		if (this->data != nullptr) {
-			/*for (int i = 0; i < counter; i++) {
-				delete this->data[i];
-			}*/
+			for (size_t i = 0; i < counter; i++)
+			{
+				delete data[i];
+				data[i] = nullptr;
+			}
 			delete[] this->data;
 			this->data = nullptr;
 			counter = 0;
@@ -91,6 +97,11 @@ public:
 				for (int i = 0; i < counter; i++) {
 					temp[i] = this->data[i];
 				}
+				for (size_t i = 0; i < counter; i++)
+				{
+					delete data[i];
+					data[i] = nullptr;
+				}
 				delete[] this->data;
 				this->data = temp;
 				temp = nullptr;
@@ -102,8 +113,14 @@ public:
 	};
 	int getSize() { return counter; };
 	void removeAll() {
-		if (this->data != nullptr)
+		if (this->data != nullptr) {
+			for (size_t i = 0; i < counter; i++)
+			{
+				delete data[i];
+				data[i] = nullptr;
+			}
 			delete[] this->data;
+		}
 		counter = 0;
 		this->data = nullptr;
 	};
