@@ -54,7 +54,11 @@ bool User::operator==(const User& user)
 {
 	if (this != &user)
 	{
-		return m_mail == user.m_mail;
+		if (m_phoneNumber.empty() && user.m_phoneNumber.empty())
+		{
+			return m_mail == user.m_mail;			
+		}
+		return m_mail == user.m_mail || m_phoneNumber == user.m_phoneNumber;
 	}
 	return true;
 }

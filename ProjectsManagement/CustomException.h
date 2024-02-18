@@ -27,3 +27,8 @@ class invalid_user : public CustomException
 public:
 	invalid_user(string message) :CustomException(message) {}
 };
+class invalid_project : public CustomException
+{
+public:
+	invalid_project(string message) :CustomException(message) {}
+};
