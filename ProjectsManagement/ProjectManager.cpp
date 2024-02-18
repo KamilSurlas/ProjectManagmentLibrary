@@ -71,11 +71,11 @@ void ProjectManager::changeStartDate(Project& project, Task& task, Date newDate)
 	}
 }
 
-void ProjectManager::removeProject(Project& project)
+bool ProjectManager::removeProject(Project& project)
 {
 	if (m_projects.isAssigned(&project))
 	{
-		m_projects.removeElement(project);
+		return m_projects.removeElement(project);
 	}
 	else
 	{
@@ -99,11 +99,11 @@ CustomAllocator<Project>& ProjectManager::getProjects()
 
 
 
-void ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
+bool ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
 {
 	if (isTaskAssignedToProject(project, task))
 	{
-		project.removeUserFromTask(task, user);
+		return project.removeUserFromTask(task, user);
 	}
 	else
 	{
@@ -133,11 +133,11 @@ void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& lead
 	}
 }
 
-void ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& leader)
+bool ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& leader)
 {
 	if (isTaskAssignedToProject(project, task))
 	{
-		project.removeLeaderFromTask(task, leader);
+		return project.removeLeaderFromTask(task, leader);
 	}
 	else
 	{
@@ -145,11 +145,11 @@ void ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& le
 	}
 }
 
-void ProjectManager::removeTask(Project& project, Task& task)
+bool ProjectManager::removeTask(Project& project, Task& task)
 {
 	if (isTaskAssignedToProject(project, task))
 	{
-		project.removeTask(task);
+		return project.removeTask(task);
 	}
 	else
 	{
@@ -168,9 +168,9 @@ void ProjectManager::assignUserToProject(Project& project, User& user)
 	project.addUser(user);
 }
 
-void ProjectManager::removeUserFromProject(Project& project, User& user)
+bool ProjectManager::removeUserFromProject(Project& project, User& user)
 {
-	project.removeUser(user);
+	 return project.removeUser(user);
 }
 
 void ProjectManager::assignManagerToProject(Project& project, User& manager)
@@ -178,9 +178,9 @@ void ProjectManager::assignManagerToProject(Project& project, User& manager)
 	project.assignManager(manager);
 }
 
-void ProjectManager::removeManagerFromProject(Project& project, User& manager)
+bool ProjectManager::removeManagerFromProject(Project& project, User& manager)
 {
-	project.removeManager();
+	return project.removeManager();
 }
 
 

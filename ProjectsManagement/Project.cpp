@@ -18,9 +18,9 @@ void Project::addTask(Task& task)
 	}
 	m_tasks.addElement(&task);
 }
-void Project::removeTask(Task& task)
+bool Project::removeTask(Task& task)
 {
-	m_tasks.removeElement(task);
+	return m_tasks.removeElement(task);
 }
 
 void Project::removeAllTasks()
@@ -33,9 +33,9 @@ void Project::addUser(User& user)
 	m_users.addElement(&user);
 }
 
-void Project::removeUser(const User& usr)
+bool Project::removeUser(const User& usr)
 {
-	m_users.removeElement(usr);
+	return m_users.removeElement(usr);
 }
 
 void Project::assignManager(User& manager)
@@ -46,12 +46,14 @@ void Project::assignManager(User& manager)
 	}
 }
 
-void Project::removeManager()
+bool Project::removeManager()
 {
 	if (m_manager != nullptr)
 	{
 		m_manager = nullptr;
+		return true;
 	}
+	return false;
 }
 
 void Project::assignUserToTask(Task& task, User& user)
@@ -62,9 +64,9 @@ void Project::assignUserToTask(Task& task, User& user)
 		throw invalid_user("User is not assigned to project");
 }
 
-void Project::removeUserFromTask(Task& task, User& user)
+bool Project::removeUserFromTask(Task& task, User& user)
 {
-	task.removeUser(user);
+	return task.removeUser(user);
 }
 
 void Project::assignLeaderToTask(Task& task, User& leader)
@@ -72,9 +74,9 @@ void Project::assignLeaderToTask(Task& task, User& leader)
 	task.addLeader(leader);
 }
 
-void Project::removeLeaderFromTask(Task& task, User& leader)
+bool Project::removeLeaderFromTask(Task& task, User& leader)
 {
-	task.removeLeader(leader);
+	return task.removeLeader(leader);
 }
 
 void Project::changeTaskStartDate(Task& task, Date newDate)
@@ -122,8 +124,7 @@ CustomAllocator<User>& Project::getAllParticipants()
 }
 
 Project& Project::operator=(Project&& project) noexcept
-{
-	// TODO: insert return statement here
+{	
 	if (this != &project) {
 		m_name = project.m_name;
 		m_description = project.m_description;

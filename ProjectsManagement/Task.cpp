@@ -18,9 +18,9 @@ void Task::addUser(User & usr)
 	m_users.addElement(&usr);
 }
 
-void Task::removeUser(const User& usr)
+bool Task::removeUser(const User& usr)
 {
-	m_users.removeElement(usr);
+	return m_users.removeElement(usr);
 }
 
 void Task::addLeader(User& ldr)
@@ -28,16 +28,16 @@ void Task::addLeader(User& ldr)
 	m_leaders.addElement(&ldr);
 }
 
-void Task::removeLeader(const User& ldr)
+bool Task::removeLeader(const User& ldr)
 {
-	m_leaders.removeElement(ldr);
+	return m_leaders.removeElement(ldr);
 }
 
 bool Task::operator==(const Task& rhs)
 {
 	if (this != &rhs)
 	{
-		//return compareFields(rhs);
+		return compareFields(rhs);
 		return false;
 	}
 	return true;
