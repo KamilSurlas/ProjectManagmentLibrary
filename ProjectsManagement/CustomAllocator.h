@@ -1,5 +1,6 @@
 #pragma once
 #include <stdexcept>
+#include <vector>
 
 template<typename T, size_t sizeLimit = 100>
 class CustomAllocator
@@ -121,6 +122,17 @@ public:
 
 		return false;
 	};
+
+	std::vector<T*> toVector() const {
+		std::vector<T*> result;
+		result.reserve(counter);
+
+		for (size_t i = 0; i < counter; i++) {
+			result.push_back(data[i]);
+		}
+
+		return result;
+	}
 	//CustomAllocator& operator=(const CustomAllocator& other) = delete;
 	//CustomAllocator& operator=(CustomAllocator&& other) noexcept = delete;
 	//CustomAllocator(const CustomAllocator& other) = delete;

@@ -70,5 +70,15 @@ string Task::toString()
 	return "\n" + formattedText;
 }
 
+CustomAllocator<User>& Task::getAllUsers()
+{
+	return this->m_users;
+}
+
+CustomAllocator<User>& Task::getAllLeaders()
+{
+	return this->m_leaders;
+}
+
 
 

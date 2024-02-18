@@ -26,6 +26,7 @@ public:
 	Task(const Task& task) = delete;
 	Task(Task&& task) noexcept = delete;
 	string toString();
-
+	CustomAllocator<User>& getAllUsers();
+	CustomAllocator<User>& getAllLeaders();
 };
 
