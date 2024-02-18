@@ -38,7 +38,6 @@ bool Task::operator==(const Task& rhs)
 	if (this != &rhs)
 	{
 		return compareFields(rhs);
-		return false;
 	}
 	return true;
 }
@@ -46,68 +45,6 @@ bool Task::operator==(const Task& rhs)
 bool Task::operator!=(const Task& rhs)
 {
 	return !(*this == rhs);
-}
-
-
-Task& Task::operator=(const Task& task) 
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-	return *this;
-}
-
-Task& Task::operator=(Task&& task) noexcept
-
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-	return *this;
-}
-
-Task::Task(const Task& task)
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-}
-
-Task::Task(Task&& task) noexcept
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
 }
 
 string Task::toString()

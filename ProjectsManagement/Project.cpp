@@ -115,61 +115,11 @@ string Project::print(char ch)
 
 CustomAllocator<User>& Project::getAllParticipants()
 {
-	CustomAllocator<User> participants;
-	for (int i = 0; i < m_users.getSize(); i++) {
-		participants.addElement(m_users[i]);
-	}
-
-	return participants;
-}
-
-Project& Project::operator=(Project&& project) noexcept
-{	
-	if (this != &project) {
-		m_name = project.m_name;
-		m_description = project.m_description;
-		m_startDate = project.m_startDate;
-		m_finishDate = project.m_finishDate;
-		m_creationDate = project.m_creationDate;
-		m_manager = project.m_manager;
-		project.m_manager = nullptr;
-		m_users = project.m_users;
-		m_tasks = project.m_tasks;
-		
-	}
-	return *this;
-}
-
-Project::Project(Project&& project) noexcept
-{
-	if (this != &project) {
-		m_name = project.m_name;
-		m_description = project.m_description;
-		m_startDate = project.m_startDate;
-		m_finishDate = project.m_finishDate;
-		m_creationDate = project.m_creationDate;
-		m_manager = project.m_manager;
-		project.m_manager = nullptr;
-		m_users = project.m_users;
-		m_tasks = project.m_tasks;
+	if (m_users.getSize() > 0)
+	{
+		return m_users;
 	}
 }
-
-Project& Project::operator=(const Project& project)
-{
-	if (this != &project) {
-		m_name = project.m_name;
-		m_description = project.m_description;
-		m_startDate = project.m_startDate;
-		m_finishDate = project.m_finishDate;
-		m_creationDate = project.m_creationDate;
-
-		m_users = project.m_users;
-		m_tasks = project.m_tasks;
-	}
-	return *this;
-}
-
 bool Project::operator==(const Project& project)
 {
 	return m_name == project.m_name &&

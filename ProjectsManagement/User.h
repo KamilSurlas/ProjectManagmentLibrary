@@ -10,7 +10,6 @@ using std::vector;
 
 class User
 {
-//Fields
 private:
 	string m_name;
 	string m_surname;
@@ -35,7 +34,6 @@ public:
 	string toString();
 	bool operator==(const User& user);
 	bool operator!=(const User& user);
-//Methods
 private:
 	bool isValidName(const string& name);
 	bool isValidSurname(const string& surname);

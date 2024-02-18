@@ -29,12 +29,12 @@ private:
 public:
 	string print(char ch = '\n');
 	Project() {}
-	Project& operator=(const Project& project);
 	bool operator==(const Project& project);
 	bool operator!=(const Project& project);
 	CustomAllocator<User>& getAllParticipants();
-	Project& operator=(Project&& project) noexcept;
-	Project(const Project& project) {};
-	Project(Project&& project) noexcept;
+	Project& operator=(Project&& project) noexcept = delete;
+	Project& operator=(const Project& project) = delete;
+	Project(const Project& project) = delete;
+	Project(Project&& project) noexcept = delete;
 };
 
