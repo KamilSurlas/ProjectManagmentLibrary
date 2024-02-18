@@ -127,10 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CustomException.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="FileHandler.cpp" />
-    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="ProjectManager.cpp" />
     <ClCompile Include="ProjectsManagement.cpp" />
