@@ -18,7 +18,6 @@ int main()
     Task* adv = projectManager->assignTaskToProject("Write advanced functionalities", "Create pay mechanism", Date(1, 6, 2024, 00, 00), Date(30, 6, 2024, 00, 00),*storeApplication);
     Task* GUI = projectManager->assignTaskToProject("Make nice looking GUI", "Create GUI", Date(1, 7, 2024, 00, 00), Date(15, 7, 2024, 00, 00), *storeApplication);
     Task* tests = projectManager->assignTaskToProject("Test application", "Write tests for application", Date(15, 7, 2024, 00, 00), Date(30, 7, 2024, 00, 00),*storeApplication);
-    cerr << "Address of storeApplication: " << (void*)&storeApplication;
     User programista1("Michal", "Wilkosz", "michalwilkosz1234@wp.pl", "michwil", "515515515");
     User programista2("Kamil", "Surlas", "kamilsurlas1234@wp.pl", "kamsur");
     User programista3("Marcin", "Kowalski", "marcinkowalski@wp.pl", "markow");

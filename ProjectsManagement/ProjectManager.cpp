@@ -19,10 +19,8 @@ Project* ProjectManager::createProject(const std::string& name, const std::strin
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
 	if (m_projects.isAssigned(p))
-		throw std::invalid_argument("");
+		throw invalid_project("Project: " + p->m_name + " is alredy assigned");
 	m_projects.addElement(p);
-
-	cerr << "Address of project in method: " << (void*)p << endl;
 	return p;
 }
 string ProjectManager::printProject(Project& project)
