@@ -45,7 +45,7 @@ void User::setPhoneNumber(const string& newPhoneNumber)
 
 
 
-string User::toString(char delimiter)
+string User::toString()
 {
 	return getName() + ";" + getSurname() + ";" + getUsername() + ";" + getMail() + ";" + getPhoneNumber();
 }

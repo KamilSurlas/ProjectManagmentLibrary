@@ -31,7 +31,7 @@ public:
 	string getMail() { return m_mail; }
 	string getUsername(){ return m_username; }
 	string getPhoneNumber() { return m_phoneNumber; }
-	string toString(char delimiter = ' ');
+	string toString();
 	bool operator==(const User& user);
 	bool operator!=(const User& user);
 private:

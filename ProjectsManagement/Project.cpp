@@ -71,7 +71,10 @@ bool Project::removeUserFromTask(Task& task, User& user)
 
 void Project::assignLeaderToTask(Task& task, User& leader)
 {
-	task.addLeader(leader);
+	if (m_users.isAssigned(&leader))
+		task.addLeader(leader);
+	else
+		throw invalid_user("User is not assigned to project");
 }
 
 bool Project::removeLeaderFromTask(Task& task, User& leader)
@@ -127,9 +130,6 @@ bool Project::operator==(const Project& project)
 		m_description == project.m_description &&
 		m_startDate == project.m_startDate &&
 		m_finishDate == project.m_finishDate;
-		/*m_creationDate == project.m_creationDate;
-		m_users == project.m_users &&
-		m_tasks == project.m_tasks;*/
 }
 
 bool Project::operator!=(const Project& project)

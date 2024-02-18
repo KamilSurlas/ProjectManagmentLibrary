@@ -7,8 +7,7 @@ Task::Task(const std::string name, const std::string desc, Date startDate, Date 
 bool Task::compareFields(const Task & task)
 {
 	return this->m_name == task.m_name &&
-		this->m_description == task.m_description &&
-		this->m_creationDate == task.m_creationDate &&
+		this->m_description == task.m_description &&	
 		this->m_startDate == task.m_startDate &&
 		this->m_finishDate == task.m_finishDate;
 }
@@ -56,7 +55,7 @@ string Task::toString()
 	formattedText += "Finish task date;" + this->m_creationDate.getDateTimeAsString() + "\n";
 	formattedText += "Leaders:\n";
 	for (int i = 0; i < m_leaders.getSize(); i++) {
-		formattedText += m_leaders[i]->toString(delimiter) + "\n";
+		formattedText += m_leaders[i]->toString() + "\n";
 	}
 
 	formattedText += "Participants:\n";

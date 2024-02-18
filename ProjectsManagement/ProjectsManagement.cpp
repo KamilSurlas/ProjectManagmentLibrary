@@ -57,7 +57,9 @@ int main()
 
 
     Project* nowy = projectManager->createProject("xd", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
-
+    projectManager->assignTaskToProject(*nowy, *tests);
+    projectManager->assignUserToProject(*nowy, programista1);
+    projectManager->assignLeaderToTask(*nowy, *tests, programista1);
 
     projectManager->printProjects();
 
