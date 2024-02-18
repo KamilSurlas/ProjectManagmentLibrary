@@ -18,9 +18,9 @@ void Task::addUser(User & usr)
 	m_users.addElement(&usr);
 }
 
-void Task::removeUser(const User& usr)
+bool Task::removeUser(const User& usr)
 {
-	m_users.removeElement(usr);
+	return m_users.removeElement(usr);
 }
 
 void Task::addLeader(User& ldr)
@@ -28,17 +28,16 @@ void Task::addLeader(User& ldr)
 	m_leaders.addElement(&ldr);
 }
 
-void Task::removeLeader(const User& ldr)
+bool Task::removeLeader(const User& ldr)
 {
-	m_leaders.removeElement(ldr);
+	return m_leaders.removeElement(ldr);
 }
 
 bool Task::operator==(const Task& rhs)
 {
 	if (this != &rhs)
 	{
-		//return compareFields(rhs);
-		return false;
+		return compareFields(rhs);
 	}
 	return true;
 }
@@ -48,69 +47,7 @@ bool Task::operator!=(const Task& rhs)
 	return !(*this == rhs);
 }
 
-
-Task& Task::operator=(const Task& task) 
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-	return *this;
-}
-
-Task& Task::operator=(Task&& task) noexcept
-
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-	return *this;
-}
-
-Task::Task(const Task& task)
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-}
-
-Task::Task(Task&& task) noexcept
-{
-	if (this != &task) {
-		m_name = task.m_name;
-		m_description = task.m_description;
-		m_startDate = task.m_startDate;
-		m_finishDate = task.m_finishDate;
-		m_creationDate = task.m_creationDate;
-
-		m_users = task.m_users;
-		m_leaders = task.m_leaders;
-	}
-}
-
-string Task::toString(char delimiter)
+string Task::toString()
 {
 	string formattedText;
 	formattedText += "Name:;" + this->m_name + "\n";

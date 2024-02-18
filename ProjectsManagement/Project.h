@@ -13,28 +13,28 @@ private:
 	friend class ProjectManager;
 	Project(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate);
 	void addTask(Task& task);
-	void removeTask(Task& task);
+	bool removeTask(Task& task);
 	void removeAllTasks();
 	void addUser(User& user) override;
-	void removeUser(const User& usr) override;
+	bool removeUser(const User& usr) override;
 	void assignManager(User& manager);
-	void removeManager();
+	bool removeManager();
 	void assignUserToTask(Task& task, User& user);
-	void removeUserFromTask(Task& task, User& user);
+	bool removeUserFromTask(Task& task, User& user);
 	void assignLeaderToTask(Task& task, User& leader);
-	void removeLeaderFromTask(Task& task, User& leader);
+	bool removeLeaderFromTask(Task& task, User& leader);
 	void changeTaskStartDate(Task& task, Date newDate);
 	void changeTaskFinishDate(Task& task, Date newDate);
 
 public:
 	string print(char delimiter = ' ');
 	Project() {}
-	Project& operator=(const Project& project);
 	bool operator==(const Project& project);
 	bool operator!=(const Project& project);
 	CustomAllocator<User>& getAllParticipants();
-	Project& operator=(Project&& project) noexcept;
-	Project(const Project& project) {};
-	Project(Project&& project) noexcept;
+	Project& operator=(Project&& project) noexcept = delete;
+	Project& operator=(const Project& project) = delete;
+	Project(const Project& project) = delete;
+	Project(Project&& project) noexcept = delete;
 };
 
