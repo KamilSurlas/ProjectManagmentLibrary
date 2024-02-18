@@ -25,7 +25,7 @@ public:
 	Task& operator=(Task&& task) noexcept;
 	Task(const Task& task);
 	Task(Task&& task) noexcept;
-	string toString();
+	string toString(char delimiter = ' ');
 
 };
 

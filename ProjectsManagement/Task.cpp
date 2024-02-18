@@ -110,17 +110,16 @@ Task::Task(Task&& task) noexcept
 	}
 }
 
-string Task::toString()
+string Task::toString(char delimiter)
 {
 	string formattedText;
-	formattedText += "Name: " + this->m_name;
-	formattedText += "Creation date: " + this->m_creationDate.getDateTimeAsString() + "\n";
-	formattedText += "Start task date: " + this->m_startDate.getDateTimeAsString() + "\n";
-	formattedText += "Finish task date: " + this->m_creationDate.getDateTimeAsString() + "\n";
-	formattedText += "Name: " + this->m_name + "\n";
+	formattedText += "Name:;" + this->m_name + "\n";
+	formattedText += "Creation date;" + this->m_creationDate.getDateTimeAsString() + "\n";
+	formattedText += "Start task date;" + this->m_startDate.getDateTimeAsString() + "\n";
+	formattedText += "Finish task date;" + this->m_creationDate.getDateTimeAsString() + "\n";
 	formattedText += "Leaders:\n";
 	for (int i = 0; i < m_leaders.getSize(); i++) {
-		formattedText += m_leaders[i]->toString() + "\n";
+		formattedText += m_leaders[i]->toString(delimiter) + "\n";
 	}
 
 	formattedText += "Participants:\n";

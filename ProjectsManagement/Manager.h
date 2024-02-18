@@ -31,7 +31,7 @@ protected:
 	virtual void changeStartDate(Project& project, Task& task, Date newDate) = 0;
 	virtual void removeProject(Project& project) = 0;
 	virtual string printProject(Project& project) = 0;
-	virtual string printProjects() = 0;
+	virtual string printProjects(char delimiter = ' ') = 0;
 	virtual CustomAllocator<Project>& getProjects() = 0;
 public:
 	virtual ~Manager() {}

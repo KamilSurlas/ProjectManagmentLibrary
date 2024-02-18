@@ -117,7 +117,7 @@ public:
 	};
 	bool isAssigned(T* element) {
 		for (int i = 0; i < counter; i++) {
-			if (this->data[i] == element)
+			if (*(this->data[i]) == *element)
 				return true;
 		}
 

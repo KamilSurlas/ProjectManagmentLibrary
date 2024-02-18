@@ -32,7 +32,7 @@ void User::setMail(const string& newMail)
 
 void User::setUsername(const string& newUsername)
 {
-	isValidUsername(newUsername) ? m_username : throw invalid_argument("Wrong username");
+	isValidUsername(newUsername) ? m_username = newUsername : throw invalid_argument("Wrong username");
 }
 
 void User::setPhoneNumber(const string& newPhoneNumber)
@@ -45,9 +45,9 @@ void User::setPhoneNumber(const string& newPhoneNumber)
 
 
 
-string User::toString()
+string User::toString(char delimiter)
 {
-	return getName() + " " + getSurname() + "\n" + this->getUsername() + "\n" + this->getMail() + "\n" + this->getPhoneNumber();
+	return getName() + ";" + getSurname() + ";" + getUsername() + ";" + getMail() + ";" + getPhoneNumber();
 }
 
 bool User::operator==(const User& user)

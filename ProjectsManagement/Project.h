@@ -27,7 +27,7 @@ private:
 	void changeTaskFinishDate(Task& task, Date newDate);
 
 public:
-	string print(char ch = '\n');
+	string print(char delimiter = ' ');
 	Project() {}
 	Project& operator=(const Project& project);
 	bool operator==(const Project& project);

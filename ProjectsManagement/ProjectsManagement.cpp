@@ -19,15 +19,15 @@ int main()
     Task* GUI = projectManager->assignTaskToProject("Make nice looking GUI", "Create GUI", Date(1, 7, 2024, 00, 00), Date(15, 7, 2024, 00, 00), *storeApplication);
     Task* tests = projectManager->assignTaskToProject("Test application", "Write tests for application", Date(15, 7, 2024, 00, 00), Date(30, 7, 2024, 00, 00),*storeApplication);
     cerr << "Address of storeApplication: " << (void*)&storeApplication;
-    User programista1("Michal", "Wilkosz", "michalwilkosz1234@wp.pl", "michwil");
+    User programista1("Michal", "Wilkosz", "michalwilkosz1234@wp.pl", "michwil", "515515515");
     User programista2("Kamil", "Surlas", "kamilsurlas1234@wp.pl", "kamsur");
     User programista3("Marcin", "Kowalski", "marcinkowalski@wp.pl", "markow");
     User programista4("Bartosz", "Nowak", "bartosznowak@wp.pl", "barnow");
 
     User kierownik1("Michal", "Kowalski", "michalkowalski@wp.pl", "michkow");
-    User kierownik2("Szymon", "Dziendzielowski", "szymondziendzielowski@wp.pl", "szydzi");
+    User kierownik2("Szymon", "Dziendzielowski", "szymondziendzielowski@wp.pl", "szydzi", "515515515");
 
-    projectManager->assignManagerToProject(*storeApplication,kierownik1);
+    projectManager->assignManagerToProject(*storeApplication,kierownik2);
     projectManager->assignUserToProject(*storeApplication, programista1);
     projectManager->assignUserToProject(*storeApplication, programista2);
     projectManager->assignUserToProject(*storeApplication, programista3);
@@ -55,7 +55,11 @@ int main()
     projectManager->assignLeaderToTask(*storeApplication, *tests, programista3);
     projectManager->assignUserToTask(*storeApplication, *tests, programista4);
 
-    cout << projectManager->printProjects();
+
+    Project* nowy = projectManager->createProject("xd", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
+
+
+    projectManager->printProjects();
 
     FileHandler::saveCSVFile();
  

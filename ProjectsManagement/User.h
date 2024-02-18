@@ -32,7 +32,7 @@ public:
 	string getMail() { return m_mail; }
 	string getUsername(){ return m_username; }
 	string getPhoneNumber() { return m_phoneNumber; }
-	string toString();
+	string toString(char delimiter = ' ');
 	bool operator==(const User& user);
 	bool operator!=(const User& user);
 //Methods

@@ -91,17 +91,18 @@ void Project::changeTaskFinishDate(Task& task, Date newDate)
 	task.setFinishDate(newDate);
 }
 
-string Project::print(char ch)
+string Project::print(char delimiter)
 {
 	string formattedText;
 	
 	formattedText += "Project name: " + this->m_name + "\n";
 	formattedText += "All participants:\n";
+	formattedText += "Imie;Nazwisko;Nick;Adres mail;Numer telefonu\n";
 	for (int i = 0; i < this->m_users.getSize(); i++) {
 		formattedText += m_users[i]->toString() + "\n";
 	}
 
-	formattedText += "Tasks:\n";
+	formattedText += "\nTasks:\n";
 	for (size_t i = 0; i < this->m_tasks.getSize(); i++)
 	{
 		formattedText += m_tasks[i]->toString();
@@ -123,7 +124,6 @@ CustomAllocator<User>& Project::getAllParticipants()
 
 Project& Project::operator=(Project&& project) noexcept
 {
-	// TODO: insert return statement here
 	if (this != &project) {
 		m_name = project.m_name;
 		m_description = project.m_description;
@@ -171,10 +171,10 @@ bool Project::operator==(const Project& project)
 	return m_name == project.m_name &&
 		m_description == project.m_description &&
 		m_startDate == project.m_startDate &&
-		m_finishDate == project.m_finishDate &&
-		m_creationDate == project.m_creationDate &&
+		m_finishDate == project.m_finishDate;
+		/*m_creationDate == project.m_creationDate;
 		m_users == project.m_users &&
-		m_tasks == project.m_tasks;
+		m_tasks == project.m_tasks;*/
 }
 
 bool Project::operator!=(const Project& project)

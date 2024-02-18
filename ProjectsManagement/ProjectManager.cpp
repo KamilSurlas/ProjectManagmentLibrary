@@ -18,7 +18,10 @@ ProjectManager* ProjectManager::getInstance()
 Project* ProjectManager::createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate)
 {
 	Project* p = new Project(name, desc, projectStartDate, projectFinishDate);
+	if (m_projects.isAssigned(p))
+		throw std::invalid_argument("");
 	m_projects.addElement(p);
+
 	cerr << "Address of project in method: " << (void*)p << endl;
 	return p;
 }
@@ -26,7 +29,7 @@ string ProjectManager::printProject(Project& project)
 {
 	return project.print();
 }
-string ProjectManager::printProjects()
+string ProjectManager::printProjects(char delimiter)
 {
 	string text = "";
 	for (int i = 0; i < m_projects.getSize(); i++)
