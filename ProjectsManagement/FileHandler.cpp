@@ -35,56 +35,50 @@ void FileHandler::saveFile(CustomAllocator<Project>& data, std::string* fileName
 		projectJson["creationDate"] = data[i]->getCreationDate().getDateTimeAsString();
 		projectJson["startDate"] = data[i]->getStartDate().getDateTimeAsString();
 		projectJson["finishDate"] = data[i]->getFinishDate().getDateTimeAsString();
-
-
-		std::vector<User*> participants = data[i]->getAllParticipants().toVector();
+	
 		json participantsJson;
-		for (const auto& participant : participants) {
+		for (size_t j = 0; j < data[i]->getAllParticipants().getSize(); j++)
+		{
 			json userJson;
-			userJson["name"] = participant->getName();  
-			userJson["surname"] = participant->getSurname();
-			userJson["email"] = participant->getMail();
-			userJson["nickname"] = participant->getUsername();
-			if (!participant->getPhoneNumber().empty())
-				userJson["phoneNumber"] = participant->getPhoneNumber();
+			userJson["name"] = data[i]->getAllParticipants()[j]->getName();
+			userJson["surname"] = data[i]->getAllParticipants()[j]->getSurname();
+			userJson["email"] = data[i]->getAllParticipants()[j]->getMail();
+			userJson["nickname"] = data[i]->getAllParticipants()[j]->getUsername();
+			if (!data[i]->getAllParticipants()[j]->getPhoneNumber().empty())
+				userJson["phoneNumber"] = data[i]->getAllParticipants()[j]->getPhoneNumber();
 
 			participantsJson.push_back(userJson);
 		}
 		projectJson["participants"] = participantsJson;
-
-
-		std::vector<Task*> tasks = data[i]->getTasks().toVector();
 		json tasksJson;
-		for (const auto& task : tasks) {
+		for (size_t t = 0; t < data[i]->getTasks().getSize(); t++)
+		{
 			json taskJson;
-			taskJson["name"] = task->getName();
-			taskJson["finishDate"] = task->getFinishDate().getDateTimeAsString();
-			taskJson["startDate"] = task->getStartDate().getDateTimeAsString();
-			taskJson["creationDate"] = task->getCreationDate().getDateTimeAsString();
-			taskJson["description"] = task->getDescritpion();
-			
+			taskJson["name"] = data[i]->getTasks()[t]->getName();
+			taskJson["finishDate"] = data[i]->getTasks()[t]->getFinishDate().getDateTimeAsString();
+			taskJson["startDate"] = data[i]->getTasks()[t]->getStartDate().getDateTimeAsString();
+			taskJson["creationDate"] = data[i]->getTasks()[t]->getCreationDate().getDateTimeAsString();
+			taskJson["description"] = data[i]->getTasks()[t]->getDescritpion();
 
-			std::vector<User*> taskParticipants = task->getAllUsers().toVector();
-			json taskparticipantsJson;
-			for (const auto& taskParticipant : taskParticipants) {
-				json taskParticipantJson;
-				taskParticipantJson["email"] = taskParticipant->getMail();
-				taskparticipantsJson.push_back(taskParticipantJson);
+			json taskParticipantsJson;
+			for (size_t p = 0; p < data[i]->getTasks()[t]->getAllUsers().getSize(); p++)
+			{
+				json oneTaskParticipantJson;
+				oneTaskParticipantJson["email"] = data[i]->getTasks()[t]->getAllUsers()[p]->getMail();
+				taskParticipantsJson.push_back(oneTaskParticipantJson);
 			}
-			taskJson["taskParticipants"] = taskparticipantsJson;
+			taskJson["taskParticipants"] = taskParticipantsJson;
 
-
-			std::vector<User*> taskLeaders = task->getAllLeaders().toVector();
 			json taskLeadersJson;
-			for (const auto& taskLeader : taskLeaders) {
-				json taskLeaderJson;
-				taskLeaderJson["email"] = taskLeader->getMail();
-				taskLeadersJson.push_back(taskLeaderJson);
+			for (size_t p = 0; p < data[i]->getTasks()[t]->getAllLeaders().getSize(); p++)
+			{
+				json oneTaskLeaderJson;
+				oneTaskLeaderJson["email"] = data[i]->getTasks()[t]->getAllLeaders()[p]->getMail();
+				taskLeadersJson.push_back(oneTaskLeaderJson);
 			}
 			taskJson["taskLeaders"] = taskLeadersJson;
-
 			tasksJson.push_back(taskJson);
-		}
+		}			
 		projectJson["tasks"] = tasksJson;
 
 		j.push_back(projectJson);

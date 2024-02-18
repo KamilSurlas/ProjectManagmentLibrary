@@ -14,7 +14,7 @@ void Project::addTask(Task& task)
 {
 	if (m_finishDate < task.getFinishDate() || m_creationDate > task.getCreationDate())
 	{
-		//throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
+		throw invalid_task("Provided task date (" + task.getFinishDate().getDateAsString() + ") is invalid (Project start date: " +m_startDate.getDateTimeAsString()+" project finish date : " + m_finishDate.getDateTimeAsString() + ")");
 	}
 	m_tasks.addElement(&task);
 }
@@ -123,14 +123,16 @@ CustomAllocator<User>& Project::getAllParticipants()
 	{
 		return m_users;
 	}
+	throw allocator_data_empty("m_users is empty");
 }
 
 CustomAllocator<Task>& Project::getTasks()
 {
-	if (m_users.getSize() > 0)
+	if (m_tasks.getSize() > 0)
 	{
 		return m_tasks;
 	}
+	throw allocator_data_empty("m_tasks is empty");
 }
 bool Project::operator==(const Project& project)
 {

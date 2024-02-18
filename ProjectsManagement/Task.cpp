@@ -72,12 +72,20 @@ string Task::toString()
 
 CustomAllocator<User>& Task::getAllUsers()
 {
-	return this->m_users;
+	if (m_users.getSize() > 0)
+	{
+		return m_users;
+	}
+	throw allocator_data_empty("m_users is empty");
 }
 
 CustomAllocator<User>& Task::getAllLeaders()
 {
-	return this->m_leaders;
+	if (m_leaders.getSize() > 0)
+	{
+		return m_leaders;
+	}
+	throw allocator_data_empty("m_leaders is empty");
 }
 
 

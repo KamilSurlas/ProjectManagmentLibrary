@@ -32,3 +32,13 @@ class invalid_project : public CustomException
 public:
 	invalid_project(string message) :CustomException(message) {}
 };
+class allocator_data_empty : public CustomException
+{
+public:
+	allocator_data_empty(string message) :CustomException(message) {}
+};
+class task_user_leader_conflict : public CustomException
+{
+public:
+	task_user_leader_conflict(string message) :CustomException(message) {}
+};

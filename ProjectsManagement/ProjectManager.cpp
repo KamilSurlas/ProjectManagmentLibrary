@@ -113,9 +113,15 @@ bool ProjectManager::removeUserFromTask(Project& project, Task& task, User& user
 }
 void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 {
-	if (isTaskAssignedToProject(project,task) && !task.m_leaders.isAssigned(&user))
+	if (isTaskAssignedToProject(project,task))
 	{
-		project.assignUserToTask(task, user);
+		if (!task.m_leaders.isAssigned(&user))
+		{
+			project.assignUserToTask(task, user);
+		}
+		else {
+			throw task_user_leader_conflict("User: " + user.getMail() + " is already assigned to task:" + task.getName() + " as leader");
+		}
 	}
 	else
 	{
@@ -124,9 +130,16 @@ void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 }
 void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& leader)
 {
-	if (isTaskAssignedToProject(project, task) && !task.m_users.isAssigned(&leader))
+	if (isTaskAssignedToProject(project, task))
 	{
-		project.assignLeaderToTask(task, leader);
+		if (!task.m_users.isAssigned(&leader))
+		{
+			project.assignLeaderToTask(task, leader);
+		}
+		else
+		{
+			throw task_user_leader_conflict("Leader: " + leader.getMail() + " is already assigned to task:" + task.getName() + " as user");
+		}
 	}
 	else
 	{

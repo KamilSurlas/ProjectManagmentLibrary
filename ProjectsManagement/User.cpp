@@ -14,7 +14,6 @@ User::User(string name, string surname, string mail, string username)
 	setUsername(username);
 }
 
-//Public
 void User::setName(const string& newName)
 {
 	!isValidName(newName) ? m_name = newName : throw invalid_argument("Wrong name (too short or too long or invalid characters)");
@@ -68,11 +67,10 @@ bool User::operator!=(const User& user)
 	return !(*this == user);
 }
 
-//Private
+
 bool User::isValidName(const string& name)
 {
-	// Check if the name contains only letters (including characters like œæ) 
-	// and has a length between 2 and 30 characters.
+	
 	string pattern = "^[\\p{L}]{2,30}$";
 	const regex nameRegex(pattern);
 
@@ -105,7 +103,6 @@ bool User::isValidUsername(const string& username)
 
 bool User::isValidPhoneNumber(const string& phoneNumber)
 {
-	//Check if phone number has the correct length and contains only digits
 	return phoneNumber.length() == 9 && phoneNumber.find_first_not_of("0123456789") == string::npos;
 }
 
