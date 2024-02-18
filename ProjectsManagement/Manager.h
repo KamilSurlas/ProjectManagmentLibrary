@@ -29,6 +29,7 @@ protected:
 	virtual void changeStartDate(Project& project, Date newDate) = 0;
 	virtual void changeFinishDate(Project& project, Task& task, Date newDate) = 0;
 	virtual void changeStartDate(Project& project, Task& task, Date newDate) = 0;
+	virtual void removeProject(Project& project) = 0;
 	virtual string printProject(Project& project) = 0;
 	virtual string printProjects() = 0;
 	virtual CustomAllocator<Project>& getProjects() = 0;

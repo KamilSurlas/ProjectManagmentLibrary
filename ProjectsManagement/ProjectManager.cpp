@@ -71,6 +71,18 @@ void ProjectManager::changeStartDate(Project& project, Task& task, Date newDate)
 	}
 }
 
+void ProjectManager::removeProject(Project& project)
+{
+	if (m_projects.isAssigned(&project))
+	{
+		m_projects.removeElement(project);
+	}
+	else
+	{
+		throw invalid_argument("Provided project was not found in projects' list");
+	}
+}
+
 ProjectManager::~ProjectManager()
 {
 	if (m_projectManager != nullptr)

@@ -91,20 +91,11 @@ public:
 		{
 			if (*(this->data[i]) == element) {
 				std::swap(this->data[i], this->data[counter - 1]);
-
-				T** temp = new T*[limit];
+				delete data[counter - 1];
+				data[counter - 1] = nullptr;
+				
 				counter--;
-				for (int i = 0; i < counter; i++) {
-					temp[i] = this->data[i];
-				}
-				for (size_t i = 0; i < counter; i++)
-				{
-					delete data[i];
-					data[i] = nullptr;
-				}
-				delete[] this->data;
-				this->data = temp;
-				temp = nullptr;
+				
 
 				return true;
 			}
