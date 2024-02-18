@@ -27,11 +27,12 @@ private:
 	void changeTaskFinishDate(Task& task, Date newDate);
 
 public:
-	string print(char delimiter = ' ');
+	string print();
 	Project() {}
 	bool operator==(const Project& project);
 	bool operator!=(const Project& project);
 	CustomAllocator<User>& getAllParticipants();
+	CustomAllocator<Task>& getTasks();
 	Project& operator=(Project&& project) noexcept = delete;
 	Project& operator=(const Project& project) = delete;
 	Project(const Project& project) = delete;

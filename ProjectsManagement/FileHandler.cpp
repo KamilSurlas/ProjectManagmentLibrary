@@ -21,22 +21,38 @@ std::string* FileHandler::createFileName()
 	return fileName;
 }
 
-void FileHandler::saveFile(const std::vector<Task*>& data, std::string* fileName)
+void FileHandler::saveFile(CustomAllocator<Project>& data, std::string* fileName)
 {
-	//Zrobione na wskazniku, zeby przy ewentualnej awarii jak najszybciej sie zapisalo
-	if (data.size() > 0) {
-		json j;
-		for (auto i : data) {
-			j["TaskName"] = i->getName();
-			j["TaskDescription"] = i->getDescritpion();
-			j["CreationDate"] = i->getCreationDate().getDateTimeAsString();
-			//j[""]
-		}
-		
-		std::ofstream file(*fileName + ".json");
-		file << j;
+	auto pm = ProjectManager::getInstance();
+	json j;
+	std::ofstream file(*fileName + ".json");
+	
+	for (int i = 0; i < data.getSize(); i++) {
+		json projectJson;
+		projectJson["projectName"] = data[i]->getName();
+		projectJson["description"] = data[i]->getDescritpion();
+		projectJson["creationDate"] = data[i]->getCreationDate().getDateTimeAsString();
+		projectJson["startDate"] = data[i]->getStartDate().getDateTimeAsString();
+		projectJson["finishDate"] = data[i]->getFinishDate().getDateTimeAsString();
+
+		//auto participants = data[i]->getAllParticipants();
+
+		//for (int k = 0; k < participants.getSize(); k++) {
+		//	// Create a JSON object for each participant
+		//	json user;
+		//	user["name"] = participants[k]->getName();
+
+		//	projectJson.push_back(user);
+		//}
+
+
+		// Add the project JSON object to the main JSON array
+		j.push_back(projectJson);
 	}
-		
+	
+
+	file << std::setw(4) << j;
+	file.close();
 
 	delete fileName;
 }

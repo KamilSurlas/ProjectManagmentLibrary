@@ -56,13 +56,15 @@ int main()
 
 
     Project* nowy = projectManager->createProject("xd", "Creating an application for a clothing store", Date(1, 3, 2024, 00, 00), Date(30, 7, 2024, 00, 00));
-    projectManager->assignTaskToProject(*nowy, *tests);
+    Task* backend = projectManager->assignTaskToProject("Backend", "Create GUI", Date(1, 7, 2024, 00, 00), Date(15, 7, 2024, 00, 00), *nowy);
     projectManager->assignUserToProject(*nowy, programista1);
-    projectManager->assignLeaderToTask(*nowy, *tests, programista1);
-
+    projectManager->assignLeaderToTask(*nowy, *backend, programista1);
+    //projectManager->assignUserToTask(*nowy, *backend, programista1);
+    
     projectManager->printProjects();
 
-    FileHandler::saveCSVFile();
+    //FileHandler::saveCSVFile();
+    FileHandler::saveFile(projectManager->getProjects());
  
 }
 

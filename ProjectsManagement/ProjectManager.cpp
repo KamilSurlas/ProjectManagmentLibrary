@@ -113,7 +113,7 @@ bool ProjectManager::removeUserFromTask(Project& project, Task& task, User& user
 }
 void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 {
-	if (isTaskAssignedToProject(project,task))
+	if (isTaskAssignedToProject(project,task) && !task.m_leaders.isAssigned(&user))
 	{
 		project.assignUserToTask(task, user);
 	}
@@ -124,7 +124,7 @@ void ProjectManager::assignUserToTask(Project& project, Task& task, User& user)
 }
 void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& leader)
 {
-	if (isTaskAssignedToProject(project, task))
+	if (isTaskAssignedToProject(project, task) && !task.m_users.isAssigned(&leader))
 	{
 		project.assignLeaderToTask(task, leader);
 	}
@@ -223,14 +223,12 @@ void ProjectManager::editTaskDescription(Project& project, Task& task, string de
 		throw invalid_argument("Project: " + project.getName() + " does not contains task: " + task.getName());
 	}
 }
-void ProjectManager::assignTaskToProject(Project& project, Task& task)
-{
-	project.addTask(task);
-}
 
 Task* ProjectManager::assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project)
 {
 	Task *t = new Task(name, desc, taskStartDate, taskFinishDate);
+	if (project.m_tasks.isAssigned(t))
+		throw invalid_task("Task: " + t->m_name + " is alredy assigned to project: " + project.m_name);
 	project.addTask(*t);
 	return t;
 }

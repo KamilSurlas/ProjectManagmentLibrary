@@ -121,9 +121,9 @@ public:
 
 		return false;
 	};
-	CustomAllocator& operator=(const CustomAllocator& other) = delete;
-	CustomAllocator& operator=(CustomAllocator&& other) noexcept = delete;
-	CustomAllocator(const CustomAllocator& other) = delete;
-	CustomAllocator(CustomAllocator&& other) noexcept = delete;
+	//CustomAllocator& operator=(const CustomAllocator& other) = delete;
+	//CustomAllocator& operator=(CustomAllocator&& other) noexcept = delete;
+	//CustomAllocator(const CustomAllocator& other) = delete;
+	//CustomAllocator(CustomAllocator&& other) noexcept = delete;
 };
 

@@ -12,7 +12,7 @@ class FileHandler
 {
 public:
 	static std::string* createFileName();
-	static void saveFile(const std::vector<Task*>& data, std::string* fileName = createFileName());
+	static void saveFile(CustomAllocator<Project>& data, std::string* fileName = createFileName());
 	static void saveCSVFile(std::string* fileName = createFileName());
 };
 

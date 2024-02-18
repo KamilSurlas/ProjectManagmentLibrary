@@ -48,23 +48,26 @@ bool Task::operator!=(const Task& rhs)
 
 string Task::toString()
 {
-	string formattedText;
+	string formattedText ;
 	formattedText += "Name:;" + this->m_name + "\n";
+	formattedText += "Leaders:;";
+	for (int i = 0; i < m_leaders.getSize(); i++) {
+		formattedText += m_leaders[i]->getMail() + ";\n";
+	}
 	formattedText += "Creation date;" + this->m_creationDate.getDateTimeAsString() + "\n";
 	formattedText += "Start task date;" + this->m_startDate.getDateTimeAsString() + "\n";
 	formattedText += "Finish task date;" + this->m_creationDate.getDateTimeAsString() + "\n";
-	formattedText += "Leaders:\n";
-	for (int i = 0; i < m_leaders.getSize(); i++) {
-		formattedText += m_leaders[i]->toString() + "\n";
-	}
-
-	formattedText += "Participants:\n";
+	
+	formattedText += "\nParticipants:\n";
 	for (size_t i = 0; i < m_users.getSize(); i++)
 	{
-		formattedText += m_users[i]->toString() + "\n";
+		formattedText += m_users[i]->getMail() + "\n";
 	}
 
-	return formattedText;
+	if (formattedText.empty())
+		formattedText += "---------------------------------";
+
+	return "\n" + formattedText;
 }
 
 

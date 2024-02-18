@@ -96,7 +96,7 @@ void Project::changeTaskFinishDate(Task& task, Date newDate)
 	task.setFinishDate(newDate);
 }
 
-string Project::print(char delimiter)
+string Project::print()
 {
 	string formattedText;
 	
@@ -107,7 +107,7 @@ string Project::print(char delimiter)
 		formattedText += m_users[i]->toString() + "\n";
 	}
 
-	formattedText += "\nTasks:\n";
+	formattedText += "\nTasks:";
 	for (size_t i = 0; i < this->m_tasks.getSize(); i++)
 	{
 		formattedText += m_tasks[i]->toString();
@@ -122,6 +122,14 @@ CustomAllocator<User>& Project::getAllParticipants()
 	if (m_users.getSize() > 0)
 	{
 		return m_users;
+	}
+}
+
+CustomAllocator<Task>& Project::getTasks()
+{
+	if (m_users.getSize() > 0)
+	{
+		return m_tasks;
 	}
 }
 bool Project::operator==(const Project& project)
