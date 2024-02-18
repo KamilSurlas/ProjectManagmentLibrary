@@ -44,7 +44,7 @@ void FileHandler::saveFile(const std::vector<Task*>& data, std::string* fileName
 void FileHandler::saveCSVFile(std::string* fileName)
 {
 	auto pm = ProjectManager::getInstance();
-	string outputString = pm->printProjects(';');
+	string outputString = pm->printProjects();
 	std::cerr << outputString;
 	std::ofstream file(*fileName + ".csv");
 

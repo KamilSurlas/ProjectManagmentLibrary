@@ -29,7 +29,7 @@ string ProjectManager::printProject(Project& project)
 {
 	return project.print();
 }
-string ProjectManager::printProjects(char delimiter)
+string ProjectManager::printProjects()
 {
 	string text = "";
 	for (int i = 0; i < m_projects.getSize(); i++)

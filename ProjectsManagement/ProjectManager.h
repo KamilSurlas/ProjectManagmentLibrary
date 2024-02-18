@@ -35,7 +35,7 @@ public:
 	Task* assignTaskToProject(const std::string& name, const std::string& desc, Date taskStartDate, Date taskFinishDate, Project& project) override;
 	Project* createProject(const std::string& name, const std::string& desc, Date projectStartDate, Date projectFinishDate) override;
 	string printProject(Project& project) override;
-	string printProjects(char delimiter = ' ') override;
+	string printProjects() override;
 	void changeFinishDate(Project& project, Date newDate) override;
 	void changeStartDate(Project& project, Date newDate) override;
 	void changeFinishDate(Project& project, Task& task, Date newDate) override;
