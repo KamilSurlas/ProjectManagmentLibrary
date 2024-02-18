@@ -131,9 +131,11 @@ Project& Project::operator=(Project&& project) noexcept
 		m_startDate = project.m_startDate;
 		m_finishDate = project.m_finishDate;
 		m_creationDate = project.m_creationDate;
-
+		m_manager = project.m_manager;
+		project.m_manager = nullptr;
 		m_users = project.m_users;
 		m_tasks = project.m_tasks;
+		
 	}
 	return *this;
 }
@@ -146,7 +148,8 @@ Project::Project(Project&& project) noexcept
 		m_startDate = project.m_startDate;
 		m_finishDate = project.m_finishDate;
 		m_creationDate = project.m_creationDate;
-
+		m_manager = project.m_manager;
+		project.m_manager = nullptr;
 		m_users = project.m_users;
 		m_tasks = project.m_tasks;
 	}
@@ -174,6 +177,7 @@ bool Project::operator==(const Project& project)
 		m_startDate == project.m_startDate &&
 		m_finishDate == project.m_finishDate &&
 		m_creationDate == project.m_creationDate &&
+		m_manager == project.m_manager &&
 		m_users == project.m_users &&
 		m_tasks == project.m_tasks;
 }
