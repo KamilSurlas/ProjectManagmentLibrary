@@ -16,13 +16,13 @@ private:
 	bool removeTask(Task& task);
 	void removeAllTasks();
 	void addUser(User& user) override;
-	bool removeUser(const User& usr) override;
+	User* removeUser(const User& usr) override;
 	void assignManager(User& manager);
 	bool removeManager();
 	void assignUserToTask(Task& task, User& user);
-	bool removeUserFromTask(Task& task, User& user);
+	User* removeUserFromTask(Task& task, User& user);
 	void assignLeaderToTask(Task& task, User& leader);
-	bool removeLeaderFromTask(Task& task, User& leader);
+	User* removeLeaderFromTask(Task& task, User& leader);
 	void changeTaskStartDate(Task& task, Date newDate);
 	void changeTaskFinishDate(Task& task, Date newDate);
 
@@ -37,5 +37,6 @@ public:
 	Project& operator=(const Project& project) = delete;
 	Project(const Project& project) = delete;
 	Project(Project&& project) noexcept = delete;
+	User* getManager();
 };
 

@@ -11,6 +11,7 @@ using json = nlohmann::json;
 class FileHandler
 {
 public:
+	~FileHandler(){ cerr << "dktor file"; }
 	static std::string* createFileName();
 	static void saveFile(CustomAllocator<Project>& data, std::string* fileName = createFileName());
 	static void saveCSVFile(std::string* fileName = createFileName());

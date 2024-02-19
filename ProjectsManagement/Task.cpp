@@ -17,9 +17,9 @@ void Task::addUser(User & usr)
 	m_users.addElement(&usr);
 }
 
-bool Task::removeUser(const User& usr)
+User* Task::removeUser(const User& usr)
 {
-	return m_users.removeElement(usr);
+	return m_users.removeElement(&usr);
 }
 
 void Task::addLeader(User& ldr)
@@ -27,9 +27,9 @@ void Task::addLeader(User& ldr)
 	m_leaders.addElement(&ldr);
 }
 
-bool Task::removeLeader(const User& ldr)
+User* Task::removeLeader(const User& ldr)
 {
-	return m_leaders.removeElement(ldr);
+	return m_leaders.removeElement(&ldr);
 }
 
 bool Task::operator==(const Task& rhs)
@@ -72,20 +72,12 @@ string Task::toString()
 
 CustomAllocator<User>& Task::getAllUsers()
 {
-	if (m_users.getSize() > 0)
-	{
 		return m_users;
-	}
-	throw allocator_data_empty("m_users is empty");
 }
 
 CustomAllocator<User>& Task::getAllLeaders()
 {
-	if (m_leaders.getSize() > 0)
-	{
-		return m_leaders;
-	}
-	throw allocator_data_empty("m_leaders is empty");
+		return m_leaders;	
 }
 
 

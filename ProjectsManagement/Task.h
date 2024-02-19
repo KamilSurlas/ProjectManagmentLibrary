@@ -16,9 +16,9 @@ public:
 	Task(const std::string name, const std::string desc, Date taskStartDate, Date taskFinishDate);
 	Task() {}
 	void addUser(User& usr) override;
-	bool removeUser(const User& usr) override;
+	User* removeUser(const User& usr) override;
 	void addLeader(User& ldr);
-	bool removeLeader(const User& ldr);
+	User* removeLeader(const User& ldr);
 	bool operator==(const Task& rhs);
 	bool operator!=(const Task& rhs);
 	Task& operator=(const Task& task) = delete;

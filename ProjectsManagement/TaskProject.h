@@ -12,7 +12,7 @@ protected:
 	Date m_finishDate;
 	Date m_startDate;
 	virtual void addUser(User& usr) = 0;
-	virtual bool removeUser(const User& usr) = 0;
+	virtual User* removeUser(const User& usr) = 0;
 	void setName(std::string name) { m_name = name; }
 	void setDescription(std::string desc) { m_description = desc; }
 public:

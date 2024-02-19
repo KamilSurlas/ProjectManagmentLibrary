@@ -1,5 +1,6 @@
 #include "ProjectManager.h"
-#include <iostream>
+
+
 
 ProjectManager* ProjectManager::m_projectManager = nullptr;
 
@@ -76,7 +77,7 @@ bool ProjectManager::removeProject(Project& project)
 {
 	if (m_projects.isAssigned(&project))
 	{
-		return m_projects.removeElement(project);
+		return m_projects.deleteElement(&project);
 	}
 	else
 	{
@@ -84,8 +85,10 @@ bool ProjectManager::removeProject(Project& project)
 	}
 }
 
+
 ProjectManager::~ProjectManager()
 {
+	
 	if (m_projectManager != nullptr)
 	{
 		delete m_projectManager;
@@ -100,7 +103,7 @@ CustomAllocator<Project>& ProjectManager::getProjects()
 
 
 
-bool ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
+User* ProjectManager::removeUserFromTask(Project& project, Task& task, User& user)
 {
 	if (isTaskAssignedToProject(project, task))
 	{
@@ -147,7 +150,7 @@ void ProjectManager::assignLeaderToTask(Project& project, Task& task, User& lead
 	}
 }
 
-bool ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& leader)
+User* ProjectManager::removeLeaderFromTask(Project& project, Task& task, User& leader)
 {
 	if (isTaskAssignedToProject(project, task))
 	{
@@ -182,8 +185,13 @@ void ProjectManager::assignUserToProject(Project& project, User& user)
 	project.addUser(user);
 }
 
-bool ProjectManager::removeUserFromProject(Project& project, User& user)
+User* ProjectManager::removeUserFromProject(Project& project, User& user)
 {
+	for (size_t i = 0; i < project.m_tasks.getSize(); i++)
+	{
+		project.m_tasks[i]->removeLeader(user);
+		project.m_tasks[i]->removeUser(user);
+	}
 	 return project.removeUser(user);
 }
 
@@ -192,7 +200,7 @@ void ProjectManager::assignManagerToProject(Project& project, User& manager)
 	project.assignManager(manager);
 }
 
-bool ProjectManager::removeManagerFromProject(Project& project, User& manager)
+bool ProjectManager::removeManagerFromProject(Project& project)
 {
 	return project.removeManager();
 }

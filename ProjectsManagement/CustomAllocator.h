@@ -87,10 +87,10 @@ public:
 			throw std::out_of_range("Provided index is out of range");
 		}
 	};
-	bool removeElement(const T& element) {
+	bool deleteElement(const T* element) {
 		for (size_t i = 0; i < counter; i++)
 		{
-			if (*(this->data[i]) == element) {
+			if (this->data[i] == element) {
 				std::swap(this->data[i], this->data[counter - 1]);
 				delete data[counter - 1];
 				data[counter - 1] = nullptr;
@@ -101,6 +101,20 @@ public:
 		}
 		return false;
 	};
+	T* removeElement(const T* element) {
+		for (size_t i = 0; i < counter; i++)
+		{
+			if (this->data[i] == element) {
+				std::swap(this->data[i], this->data[counter - 1]);
+				T* elToRemove = data[counter - 1];
+				data[counter - 1] = nullptr;
+
+				counter--;
+				return elToRemove;
+			}
+		}
+		return nullptr;
+	}
 	int getSize() { return counter; };
 	void removeAll() {
 		if (this->data != nullptr) {

@@ -20,7 +20,15 @@ void Project::addTask(Task& task)
 }
 bool Project::removeTask(Task& task)
 {
-	return m_tasks.removeElement(task);
+	for (size_t i = 0; i < task.getAllLeaders().getSize(); i++)
+	{
+		task.removeLeader(*task.getAllLeaders()[i]);
+	}
+	for (size_t i = 0; i < task.getAllUsers().getSize(); i++)
+	{
+		task.removeUser(*task.getAllUsers()[i]);
+	}
+	return m_tasks.deleteElement(&task);
 }
 
 void Project::removeAllTasks()
@@ -33,9 +41,9 @@ void Project::addUser(User& user)
 	m_users.addElement(&user);
 }
 
-bool Project::removeUser(const User& usr)
+User* Project::removeUser(const User& usr)
 {
-	return m_users.removeElement(usr);
+	return m_users.removeElement(&usr);
 }
 
 void Project::assignManager(User& manager)
@@ -64,7 +72,7 @@ void Project::assignUserToTask(Task& task, User& user)
 		throw invalid_user("User is not assigned to project");
 }
 
-bool Project::removeUserFromTask(Task& task, User& user)
+User* Project::removeUserFromTask(Task& task, User& user)
 {
 	return task.removeUser(user);
 }
@@ -77,7 +85,7 @@ void Project::assignLeaderToTask(Task& task, User& leader)
 		throw invalid_user("User is not assigned to project");
 }
 
-bool Project::removeLeaderFromTask(Task& task, User& leader)
+User* Project::removeLeaderFromTask(Task& task, User& leader)
 {
 	return task.removeLeader(leader);
 }
@@ -101,6 +109,10 @@ string Project::print()
 	string formattedText;
 	
 	formattedText += "Project name: " + this->m_name + "\n";
+	if (m_manager != nullptr)
+	{
+		formattedText += "Project manager:; " + this->m_manager->toString() + "\n";
+	}
 	formattedText += "All participants:\n";
 	formattedText += "Imie;Nazwisko;Nick;Adres mail;Numer telefonu\n";
 	for (int i = 0; i < this->m_users.getSize(); i++) {
@@ -119,20 +131,20 @@ string Project::print()
 
 CustomAllocator<User>& Project::getAllParticipants()
 {
-	if (m_users.getSize() > 0)
-	{
+	
 		return m_users;
-	}
-	throw allocator_data_empty("m_users is empty");
+	
 }
 
 CustomAllocator<Task>& Project::getTasks()
 {
-	if (m_tasks.getSize() > 0)
-	{
+
 		return m_tasks;
-	}
-	throw allocator_data_empty("m_tasks is empty");
+	
+}
+User* Project::getManager()
+{
+	return m_manager;
 }
 bool Project::operator==(const Project& project)
 {

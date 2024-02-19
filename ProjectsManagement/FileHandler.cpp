@@ -31,6 +31,7 @@ void FileHandler::saveFile(CustomAllocator<Project>& data, std::string* fileName
 	for (int i = 0; i < data.getSize(); i++) {
 		json projectJson;
 		projectJson["projectName"] = data[i]->getName();
+		projectJson["projectManager"] = data[i]->getManager() == nullptr ? "" : data[i]->getManager()->getMail();
 		projectJson["description"] = data[i]->getDescritpion(); 
 		projectJson["creationDate"] = data[i]->getCreationDate().getDateTimeAsString();
 		projectJson["startDate"] = data[i]->getStartDate().getDateTimeAsString();
@@ -94,7 +95,7 @@ void FileHandler::saveCSVFile(std::string* fileName)
 {
 	auto pm = ProjectManager::getInstance();
 	string outputString = pm->printProjects();
-	std::cerr << outputString;
+	
 	std::ofstream file(*fileName + ".csv");
 
 	if (file.is_open()) {

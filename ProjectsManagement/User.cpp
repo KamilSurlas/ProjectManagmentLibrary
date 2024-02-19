@@ -16,12 +16,12 @@ User::User(string name, string surname, string mail, string username)
 
 void User::setName(const string& newName)
 {
-	!isValidName(newName) ? m_name = newName : throw invalid_argument("Wrong name (too short or too long or invalid characters)");
+	isValidName(newName) ? m_name = newName : throw invalid_argument("Wrong name (too short or too long or invalid characters)");
 }
 
 void User::setSurname(const string& newSurname)
 {
-	!isValidName(newSurname) ? m_surname = newSurname : throw invalid_argument("Wrong surname (too short or too long or invalid characters)");
+	isValidName(newSurname) ? m_surname = newSurname : throw invalid_argument("Wrong surname (too short or too long or invalid characters)");
 }
 
 void User::setMail(const string& newMail)
@@ -71,15 +71,14 @@ bool User::operator!=(const User& user)
 bool User::isValidName(const string& name)
 {
 	
-	string pattern = "^[\\p{L}]{2,30}$";
+	string pattern = "^[A-Za-z ,.'-]+$";
 	const regex nameRegex(pattern);
-
 	return regex_match(name, nameRegex);
 }
 
 bool User::isValidSurname(const string& surname)
 {
-	string pattern = "^[\\p{L}-]{2,50}$";
+	string pattern = "^[A-Za-z ,.'-]+$";
 	const regex surnameRegex(pattern);
 
 	return regex_match(surname, surnameRegex);
