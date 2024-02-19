@@ -68,5 +68,11 @@ int main()
     FileHandler::saveCSVFile();
     FileHandler::saveFile(projectManager->getProjects());
   
+    delete programista1;
+    delete programista2;
+    delete programista3;
+    delete programista4;
+    delete kierownik1;
+    delete kierownik2;
 }
 
