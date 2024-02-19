@@ -7,10 +7,10 @@ A library written in C++ as a college project.
 - Adding users to the projects and tasks
 - Adding manager to the project
 - Setting the start and end dates of the tasks
-- setting the start and end dates of the projects
+- Setting the start and end dates of the projects
 - Manage users in projects and tasks
 - Manage tasks in project
-- Save projects to CSV and JSON files.
+- Save projects to CSV and JSON files
 - Ensuring exception handling (throwing custom exceptions)
 
 
