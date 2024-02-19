@@ -67,5 +67,6 @@ int main()
  
     FileHandler::saveCSVFile();
     FileHandler::saveFile(projectManager->getProjects());
+  
 }
 

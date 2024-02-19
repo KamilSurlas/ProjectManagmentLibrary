@@ -86,15 +86,7 @@ bool ProjectManager::removeProject(Project& project)
 }
 
 
-ProjectManager::~ProjectManager()
-{
-	
-	if (m_projectManager != nullptr)
-	{
-		delete m_projectManager;
-		m_projectManager = nullptr;
-	}
-}
+
 
 CustomAllocator<Project>& ProjectManager::getProjects()
 {
